@@ -1,0 +1,23 @@
+table{
+    width: 100%;
+    border:2px solid;
+}
+table th{
+    width: 20%;
+    border:2px solid;
+}
+table tr{
+    font-size: medium;
+}
+table tr .a{
+    background-color: #7CFC00;
+}
+table tr .b{
+    background-color: #7FFF00;
+}
+table tr .c{
+    background-color: #32CD32;
+}
+table tr .d{
+    background-color: #00FF00;
+}
