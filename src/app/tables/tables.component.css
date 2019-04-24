@@ -1,9 +1,9 @@
 table{
     width: 100%;
-    border:2px solid;
-}
+    border-bottom:5px solid;
+}dd
 table th{
-    width: 20%;
+    width: 19%;
     border:2px solid;
 }
 table tr{
@@ -20,4 +20,12 @@ table tr .c{
 }
 table tr .d{
     background-color: #00FF00;
+}
+.dd{
+    background-color: white;
+}
+.dd div{
+    display: inline-block;
+    width: 24%;
+    padding: 1px;
 }
