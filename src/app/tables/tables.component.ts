@@ -10,7 +10,11 @@ export class TablesComponent implements OnInit {
   boards={"name1": "Backlog","name2":"Todo","name3":"In Progress","name4":"Done"};
   constructor() { }
 
+  comment(){
+    
+  }
   ngOnInit() {
+    
   }
 
 }

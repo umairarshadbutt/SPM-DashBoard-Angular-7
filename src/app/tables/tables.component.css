@@ -11,9 +11,11 @@ table tr{
 }
 table tr .a{
     background-color: #7CFC00;
+    
 }
 table tr .b{
     background-color: #7FFF00;
+
 }
 table tr .c{
     background-color: #32CD32;

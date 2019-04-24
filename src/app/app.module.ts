@@ -7,12 +7,16 @@ import { TablesComponent } from './tables/tables.component';
 import {TasksComponent} from './tasks/tasks.component';
 import {HttpModule} from '@angular/http';
 import { ServerService } from './server.service';
+import { CommentComponent } from './comment/comment.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TablesComponent,
-    TasksComponent
+    TasksComponent,
+    CommentComponent,
+    TaskDetailComponent
   ],
   imports: [
     BrowserModule,
