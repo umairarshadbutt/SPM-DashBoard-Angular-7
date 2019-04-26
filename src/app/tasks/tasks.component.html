@@ -1,14 +1,25 @@
 
-<div class="container-fluid">
-  <div class="navbar-header" >
-   
+  <div class="task_detail" *ngFor="let tasks of task" [class.selected]="task  === selectedTask" (click)="onSelect(tasks)">
+   <div>
     <table >
-      <h4>{{tasks.task_id}} - {{tasks.task_title}}</h4>
-      <tr>
-        Assigned: <td>{{tasks.assigned}}</td>
-      </tr>
-      
+      <h4>{{tasks.task_id}} - {{tasks.task_title}} <img [src]="tasks.assigned"> </h4>   
     </table>
-    
+    <br>
   </div>
-</div>
+  </div>
+
+  <div  *ngIf="selectedTask">
+   <div class="dd">
+    <table >
+      <h4><u>{{selectedTask.task_id}} - {{selectedTask.task_title}} </u><img class="a" [src]="selectedTask.assigned"> </h4> 
+    <tr>
+        <p><img [src]="selectedTask.comments.comment_author"> <br><span>{{selectedTask.comments.comment_id}} {{selectedTask.comments.comment_text}}</span></p>
+    </tr>
+    
+  </table>
+    </div>
+  </div>
+  <br><br>
+  
+
+

@@ -1,8 +1,87 @@
-table{
-    width:100%;
-    border: .5px solid;
+.d_{
+    background-color: white;
 }
-table td{
-    border: .5px solid;
-}
+    table{
+        width: 90%;
+        background-color: #F0A07C;
+        color: #4A274F;
+        font-size: 16px;
+        text-align: center;
+        border:4px solid #7cfc0059;
+        border-radius: 52px!important;
+        height: 0px;
+        margin-left: 8px;
+        cursor: pointer;
 
+    }
+    
+    h4{
+        margin: 1px;
+    }
+    table  img{
+        max-height: 30px;
+        float:right;
+        border-radius: 60px!important;
+    }
+
+    .dd{
+        background-color: white;
+    }
+    
+    
+
+   .dd  table{
+        width: 75%;
+        background-color: #483ad4;
+        color: #ccf381;
+        font-size: 18px;
+        text-align: center;
+        border: 4px solid #1815ff;
+        border-radius: 20px!important;
+        height: 0px;
+        margin-left: 206px;
+        margin-right: 206px;
+
+    }
+    .dd p{
+        padding-bottom: 1px;
+        float: left;
+        padding-left: 25px;
+        
+    }
+    .dd span{
+        background-color: #5244e0;
+    }
+    .dd    h4{
+        margin: 1px;
+        float: left;
+        padding-left: 25px;
+    }
+    .dd table h4 img{
+        max-height: 30px;
+        
+        border-radius: 60px!important;
+    }
+    .dd table tr img{
+        max-height: 50px;
+        float: left;
+        border-radius: 50px!important;
+    }
+
+    .dd     span{
+        padding-bottom: 5px;
+    }
+
+
+
+    .task_detail{
+        background-color: white;
+    }
+    .task_detail div{
+        display: inline-block;
+        width: 24%;
+        padding: 1px;
+        height: 50px;
+        margin:4px;
+        
+    }
