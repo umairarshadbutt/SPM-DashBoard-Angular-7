@@ -7,8 +7,9 @@
 <div class="dd" >
 <div   class="list-group-item"
 style="cursor: pointer"
-*ngFor="let ingredient of ingredients">      <a >
-       
+*ngFor="let ingredient of ingredients; let i=index"
+(click)="onEditItem(i)">      
+       <a >
         <table >
           <tr >
             <th class="a">{{ingredient.name}}</th>
