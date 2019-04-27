@@ -10,12 +10,12 @@ import { TableService } from './table.service';
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.css']
 })
-export class TablesComponent  {
+export class TablesComponent  implements OnInit{
 
  // boards={"name1": "Backlog","name2":"Todo","name3":"In Progress","name4":"Done"};
 
-  board_:Board[];
-  selectedTask: Task;
+  // board_:Board[];
+  // selectedTask: Task;
   // constructor(private tasksService:TaskService) { }
 
   //this is for getting board from json

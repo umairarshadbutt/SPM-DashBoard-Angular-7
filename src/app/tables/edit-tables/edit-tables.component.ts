@@ -10,16 +10,14 @@ import { Ingredient } from 'src/app/ingredient.model';
 export class EditTablesComponent implements OnInit {
 
   @ViewChild('nameInput') nameInputRef:ElementRef;
-  @ViewChild('amountInput') amountInputRef:ElementRef;
-  constructor(private slService: TableService) { }
+  constructor(private taskService: TableService) { }
 
   ngOnInit() {
   }
   onAddItem(){
     const ingName= this.nameInputRef.nativeElement.value;
-    const ingAmount= this.amountInputRef.nativeElement.value;
     const newIngredient =new Ingredient(ingName);
-    this.slService.addIngredient(newIngredient);
+    this.taskService.addIngredient(newIngredient);
   }
 
 

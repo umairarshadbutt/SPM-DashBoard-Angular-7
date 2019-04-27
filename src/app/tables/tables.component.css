@@ -4,9 +4,11 @@ table{
     padding-right: 3px;
     
     color:#CCF381;
+
+    
 }dd
 table th{
-    width: 19%;
+    width: 250px;
     border:2px solid;
     
 }
@@ -35,9 +37,13 @@ table tr .d{
 }
 .dd{
     background-color: white;
+
+    
 }
 .dd div{
     display: inline-block;
-    width: 24%;
+    width: 430px;
     padding: 1px;
+
+    
 }

@@ -11,6 +11,7 @@ import { ServerService } from './server.service';
 import { CommentComponent } from './comment/comment.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditTablesComponent } from './tables/edit-tables/edit-tables.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [ServerService,TableService],
   bootstrap: [AppComponent]
