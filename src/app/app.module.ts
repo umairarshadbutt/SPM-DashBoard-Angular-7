@@ -12,6 +12,7 @@ import { CommentComponent } from './comment/comment.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
 import { FormsModule } from '@angular/forms';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,14 @@ import { FormsModule } from '@angular/forms';
     TasksComponent,
     CommentComponent,
     TaskDetailComponent,
-    EditTablesComponent
+    EditTablesComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [ServerService,TableService],
   bootstrap: [AppComponent]
