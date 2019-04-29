@@ -12,8 +12,6 @@ import { CommentComponent } from './comment/comment.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
 import { FormsModule } from '@angular/forms';
-import { TaskService } from './tasks/tasks.service';
-import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +20,7 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     TasksComponent,
     CommentComponent,
     TaskDetailComponent,
-    EditTablesComponent,
-    EditTaskComponent
+    EditTablesComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +28,7 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     HttpModule,
     FormsModule
   ],
-  providers: [ServerService,TableService, TaskService],
+  providers: [ServerService,TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
