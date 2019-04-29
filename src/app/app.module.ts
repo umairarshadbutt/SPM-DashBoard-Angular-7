@@ -1,3 +1,4 @@
+import { TableService } from './tables/table.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,6 +10,8 @@ import {HttpModule} from '@angular/http';
 import { ServerService } from './server.service';
 import { CommentComponent } from './comment/comment.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,16 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     TablesComponent,
     TasksComponent,
     CommentComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    EditTablesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
-  providers: [ServerService],
+  providers: [ServerService,TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

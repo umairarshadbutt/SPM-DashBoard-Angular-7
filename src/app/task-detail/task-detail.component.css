@@ -1,15 +1,4 @@
-table{
-    width: 100%;
-    border-bottom:5px solid;
-    padding: 2px;
-}
-table th{
-    width: 19%;
-    border:2px solid;
-}
-table tr{
-    font-size: medium;
-}
+
 
 .dd{
     background-color: white;
@@ -19,4 +8,6 @@ table tr{
     width: 24%;
     padding: 1px;
     height: 50px;
+    margin:4px;
+    
 }
