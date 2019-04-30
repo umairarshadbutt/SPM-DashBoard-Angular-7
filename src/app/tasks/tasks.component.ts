@@ -1,6 +1,9 @@
-import { TaskService } from './../tasks.service';
+
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../task';
+import { IngredientTask } from '../ingredientTask.model';
+import { Subscription } from 'rxjs/Subscription';
+import { TaskService } from './tasks.service';
 
 
 
@@ -10,20 +13,34 @@ import { Task } from '../task';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-
-  task:Task[];
+  ingredients:IngredientTask[] ;
+  private subscription: Subscription;
+  //task:Task[];
   selectedTask: Task;
   constructor(private tasksService:TaskService) { }
 
 
   ngOnInit() {
-    this.getTasks();
+    //this.getTasks();
+    this.ingredients = this.tasksService.getIngredients();
+    this.subscription = this.tasksService.IngredientChanged
+      .subscribe(
+        (ingredients: IngredientTask[]) => {
+          this.ingredients = ingredients;
+        }
+      );
   }
   onSelect(task:Task): void{
     this.selectedTask=task;
   }
-  getTasks():void{
-    this.tasksService.getTask().subscribe(task=> this.task=task);
+  // getTasks():void{
+  //   this.tasksService.getTask().subscribe(task=> this.task=task);
+  // }
+
+  onEditItem(index:number){
+    this.tasksService.startedEditing.next(index);
+
+
   }
 
 }

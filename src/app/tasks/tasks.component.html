@@ -1,13 +1,15 @@
 
-  <div class="task_detail" *ngFor="let tasks of task" [class.selected]="task  === selectedTask" (click)="onSelect(tasks)">
+  <div class="task_detail" *ngFor="let ingredient of ingredients; let i=index" [class.selected]="task  === selectedTask" (click)="onEditItem(i)">
    <div>
     <table >
-      <h4>{{tasks.task_id}} - {{tasks.task_title}} <img [src]="tasks.assigned"> </h4>   
+      <h4>{{ingredient.task_id}} - {{ingredient.task_title}} <img [src]="ingredient.assigned"> </h4>   
     </table>
     <br>
   </div>
+  
   </div>
-
+  <button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button>
+<app-edit-task></app-edit-task>
   <div  *ngIf="selectedTask">
    <div class="dd">
     <table >
