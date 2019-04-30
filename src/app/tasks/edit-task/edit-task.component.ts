@@ -7,9 +7,9 @@ import {
   OnDestroy
 } from '@angular/core';
 import { TaskService } from '../tasks.service';
-import { IngredientTask } from 'src/app/ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
+import { IngredientTask } from '../../ingredientTask.model';
 
 
 @Component({
@@ -71,5 +71,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
     this.subscription.unsubscribe();
   }
+
+
 
 }

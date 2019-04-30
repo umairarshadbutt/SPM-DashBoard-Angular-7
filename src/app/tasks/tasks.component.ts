@@ -4,6 +4,7 @@ import { Task } from '../task';
 import { IngredientTask } from '../ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from './tasks.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -17,7 +18,9 @@ export class TasksComponent implements OnInit {
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Task;
-  constructor(private tasksService:TaskService) { }
+  constructor(private tasksService:TaskService,
+              private router: Router,
+              private route:ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -41,6 +44,9 @@ export class TasksComponent implements OnInit {
     this.tasksService.startedEditing.next(index);
 
 
+  }
+  onNewRecipe() {
+    this.router.navigate(['newTask'], {relativeTo: this.route});
   }
 
 }
