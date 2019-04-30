@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
 import { IngredientTask } from '../ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit, OnDestroy {
   ingredients:IngredientTask[] ;
   private subscription: Subscription;
   //task:Task[];
@@ -48,5 +48,7 @@ export class TasksComponent implements OnInit {
   onNewRecipe() {
     this.router.navigate(['newTask'], {relativeTo: this.route});
   }
-
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
