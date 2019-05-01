@@ -41,6 +41,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   // }
 
   onEditItem(index:number){
+    this.router.navigate(['editTask'], {relativeTo: this.route});
     this.tasksService.startedEditing.next(index);
 
 

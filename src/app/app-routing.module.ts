@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 const routes: Routes = [
-  {path: 'newTask', component: EditTaskComponent}
+  {path: 'newTask', component: EditTaskComponent},
+  {path: 'editTask', component: EditTaskComponent}
 ];
 
 @NgModule({
