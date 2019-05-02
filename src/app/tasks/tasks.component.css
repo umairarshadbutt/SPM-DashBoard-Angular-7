@@ -71,7 +71,6 @@
     }
     .task_detail div{
         display: inline-block;
-        width: 24%;
         padding: 1px;
         height: 50px;
         margin:4px;
@@ -80,6 +79,5 @@
 
     .dd div{
         display: inline-block;
-        width: 430px;
         padding: 1px; 
     }

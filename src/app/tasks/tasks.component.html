@@ -4,13 +4,12 @@
 <div class="dd" >
 <div   class=""
 style="cursor: pointer; width:270px"
-*ngFor="let ingredient_ of ingredient; let i=index"
-(click)="onEditItem1(i)">      
+*ngFor="let ingredient_ of ingredient; let i=index">      
        <a >
         
         <table >
           
-           <h3 style="width:250px">{{ingredient_.name}}</h3>
+           <h3 style="width:250px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
           
           </table>
       </a>
