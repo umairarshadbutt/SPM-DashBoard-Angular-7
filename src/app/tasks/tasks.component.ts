@@ -5,6 +5,8 @@ import { IngredientTask } from '../ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ingredient } from '../ingredient.model';
+import { TableService } from '../tables/table.service';
 
 
 
@@ -15,12 +17,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TasksComponent implements OnInit, OnDestroy {
   ingredients:IngredientTask[] ;
+  ingredient: Ingredient[] ;
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Task;
   constructor(private tasksService:TaskService,
               private router: Router,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private slService:TableService) { }
 
 
   ngOnInit() {
@@ -30,6 +34,13 @@ export class TasksComponent implements OnInit, OnDestroy {
       .subscribe(
         (ingredients: IngredientTask[]) => {
           this.ingredients = ingredients;
+        }
+      );
+
+      this.ingredient = this.slService.getIngredients();
+    this.subscription = this.slService.ingredientsChanged.subscribe(
+        (ingredient: Ingredient[]) => {
+          this.ingredient = ingredient;
         }
       );
   }
@@ -44,7 +55,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.router.navigate(['editTask'], {relativeTo: this.route});
     this.tasksService.startedEditing.next(index);
 
+  }
 
+  onEditItem1(index:number){
+    this.slService.startedEditing.next(index);
   }
   onNewRecipe() {
     this.router.navigate(['newTask'], {relativeTo: this.route});

@@ -1,3 +1,37 @@
+<app-edit-tables></app-edit-tables>
+
+<hr>
+<div class="dd" >
+<div   class=""
+style="cursor: pointer; width:270px"
+*ngFor="let ingredient_ of ingredient; let i=index"
+(click)="onEditItem1(i)">      
+       <a >
+        
+        <table >
+          
+           <h3 style="width:250px">{{ingredient_.name}}</h3>
+          
+          </table>
+      </a>
+    
+    </div>
+    
+  <!-- 
+    ===>data from json
+    <div class="container-fluid" *ngFor="let board of board_">
+   
+      <table >
+        <tr >
+          <th class="a">{{board.name}}</th>
+        </tr>
+      
+      </table>
+  </div> -->
+</div>
+
+
+
 
   <div class="task_detail" *ngFor="let ingredient of ingredients; let i=index" [class.selected]="task  === selectedTask" (click)="onEditItem(i)">
    <div>
