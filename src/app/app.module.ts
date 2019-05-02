@@ -14,6 +14,7 @@ import { EditTablesComponent } from './tables/edit-tables/edit-tables.component'
 import { FormsModule } from '@angular/forms';
 import { TaskService } from './tasks/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     CommentComponent,
     TaskDetailComponent,
     EditTablesComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
