@@ -58,10 +58,14 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   onEditItem1(index:number){
+    this.router.navigate(['editBoard'], {relativeTo: this.route});
     this.slService.startedEditing.next(index);
   }
-  onNewRecipe() {
+  onNewTask() {
     this.router.navigate(['newTask'], {relativeTo: this.route});
+  }
+  onNewBoard() {
+    this.router.navigate(['newBoard'], {relativeTo: this.route});
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

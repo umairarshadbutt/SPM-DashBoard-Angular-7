@@ -3,7 +3,7 @@
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
      
       <div class="row">
-        <div class="col-sm-5 form-group">
+        <div class="col-sm-2 form-group">
           <label for="tId">ID : </label>
           <input
             type="number"
@@ -13,7 +13,7 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-2 form-group">
+        <div class="col-sm-6 form-group">
           <label for="task">Task : </label>
           <input
             type="text"
@@ -22,8 +22,8 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-2 form-group">
-          <label for="pic">Picture : </label>
+        <div class="col-sm-4 form-group">
+          <label for="pic">Picture URL: </label>
           <input
             type="text"
             id="pic"
