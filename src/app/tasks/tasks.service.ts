@@ -6,10 +6,7 @@ export class TaskService{
 
   startedEditing = new Subject<number>();
     private ingredient: IngredientTask[]=[
-        new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg',[new IngredientComment(2,'IngredientComment IngredientComment IngredientComment','Umair')]),
-        new IngredientTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg',[new IngredientComment(2,'IngredientComment IngredientComment IngredientComment','Umair')]),
-        new IngredientTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg',[new IngredientComment(2,'IngredientComment IngredientComment IngredientComment','Umair')]),
-        new IngredientTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg',[new IngredientComment(2,'IngredientComment IngredientComment IngredientComment','Umair')])
+        new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
   
       ];
 

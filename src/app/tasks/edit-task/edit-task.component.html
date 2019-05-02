@@ -1,18 +1,13 @@
 <div class="row">
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="submit" class="btn btn-success">Save</button>
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-      </div>
+     
       <div class="row">
         <div class="col-sm-5 form-group">
-          <label for="id">ID : </label>
+          <label for="tId">ID : </label>
           <input
             type="number"
-            id="id"
+            id="tId"
             class="form-control"
             name="tId"
             ngModel
@@ -38,40 +33,8 @@
             required>
         </div>
       </div>
-
-
-
-
-      <div class="row">
-        <div class="col-sm-5 form-group">
-          <label for="comment_id">comment : </label>
-          <input
-            type="text"
-            id="comment_id"
-            class="form-control"
-            name="comment_id"
-            ngModel
-            required>
-        </div>
-        
-      </div>
       
-      <div class="row">
-          <div class="col-xs-12">
-            <div class="row">
-              <div class="col-xs-8">
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-xs-2">
-                  <input type="text" class="form-control">
-                </div>
-
-                <div class="col-xs-2">
-                    <button class="btn btn-danger">X</button>
-                  </div>
-            </div>
-          </div>
-      </div>
+    
       <div class="row">
         <div class="col-xs-12">
           <button 
@@ -85,8 +48,5 @@
         </div>
       </div>
     </form>
-    <p>
-      {{task.comments.comment_id}}
-     </p>
-  </div>
+    </div>
 </div>

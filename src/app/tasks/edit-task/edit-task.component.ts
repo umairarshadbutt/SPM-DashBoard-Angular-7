@@ -39,8 +39,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.slForm.setValue({
           tId: this.editedItem.task_id,
           tTitle: this.editedItem.task_title,
-          pIc: this.editedItem.assigned,
-          comment_id:this.editedItem.comment,
+          pIc: this.editedItem.assigned
           
         })
       }
@@ -50,7 +49,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new IngredientTask(value.tId,value.tTitle,value.pIc,[new IngredientComment(value.comment_id, value.comment,value.comment_auther)]);
+    const newIngredient = new IngredientTask(value.tId,value.tTitle,value.pIc);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {
