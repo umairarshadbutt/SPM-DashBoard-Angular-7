@@ -1,7 +1,7 @@
 .d_{
     background-color: white;
 }
-    table{
+   .tasks{
         background-color: #F0A07C;
         color: #4A274F;
         font-size: 16px;
@@ -16,7 +16,7 @@
     h4{
         margin: 1px;
     }
-    table  img{
+    .tasks  img{
         max-height: 30px;
         float:right;
         border-radius: 60px!important;
@@ -27,14 +27,16 @@
     }
     
     
-
-   .dd  table{
-        background-color: #483ad4;
+.board{
+    background-color: #483ad4;
         color: #ccf381;
-      
-       
-
-    }
+        text-align: center;
+        border-radius: 52px!important;
+        height: 50px;
+        margin-left: 8px;
+        cursor: pointer;
+        
+}
     .dd p{
         padding-bottom: 1px;
         float: left;
@@ -48,6 +50,8 @@
         margin: 1px;
         float: left;
         padding-left: 25px;
+        margin-left: 150px;
+        margin-right: 150px;
     }
     .dd table h4 img{
         max-height: 30px;
@@ -68,12 +72,14 @@
 
     .task_detail{
         background-color: white;
+        width:400px;
     }
     .task_detail div{
         display: inline-block;
         padding: 1px;
-        height: 50px;
+        height: 35px;
         margin:4px;
+        
         
     }
 

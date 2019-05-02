@@ -1,19 +1,13 @@
-<button class="btn btn-success" (click)="onNewBoard()">New Task</button>
+<button class="btn btn-success" (click)="onNewBoard()">New Board</button>
 
 <hr>
 <div class="dd" >
-<div   class=""
-style="cursor: pointer; width:270px"
-*ngFor="let ingredient_ of ingredient; let i=index">      
-       <a >
-        
-        <table >
-          
-           <h3 style="width:250px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
-          
-          </table>
-      </a>
-    
+<div  style="cursor: pointer" *ngFor="let ingredient_ of ingredient; let i=index">      
+         <div class="board">
+            <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>&nbsp;&nbsp;&nbsp; 
+         </div>
+
+         
     </div>
     
   <!-- 
@@ -30,17 +24,12 @@ style="cursor: pointer; width:270px"
 </div>
 
 
-
-
-  <div class="task_detail" *ngFor="let ingredient of ingredients; let i=index" [class.selected]="task  === selectedTask" (click)="onEditItem(i)">
-   <div>
-    <table >
-      <h4>{{ingredient.task_id}} - {{ingredient.task_title}} <img [src]="ingredient.assigned"> </h4>   
-    </table>
-    <br>
-  </div>
-  
-  </div>
+<div class="task_detail " *ngFor="let ingredient of ingredients; let i=index"  >
+    <div class="tasks">
+      <h4 (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}} <img [src]="ingredient.assigned"> </h4>
+      <br>
+    </div>
+</div>
   <button class="btn btn-success" (click)="onNewTask()">New Task</button>
 
   <div  *ngIf="selectedTask">
