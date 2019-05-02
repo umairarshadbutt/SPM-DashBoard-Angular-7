@@ -2,6 +2,12 @@
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
       <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-sm-5 form-group">
           <label for="id">ID : </label>
           <input
@@ -33,6 +39,22 @@
         </div>
       </div>
       
+      <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-8">
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-xs-2">
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class="col-xs-2">
+                    <button class="btn btn-danger">X</button>
+                  </div>
+            </div>
+          </div>
+      </div>
       <div class="row">
         <div class="col-xs-12">
           <button 

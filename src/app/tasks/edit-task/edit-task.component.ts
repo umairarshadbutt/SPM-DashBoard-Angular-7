@@ -10,7 +10,7 @@ import { TaskService } from '../tasks.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { IngredientTask } from '../../ingredientTask.model';
-
+import { IngredientComment} from '../../IngredientComment.model';
 
 @Component({
   selector: 'app-edit-task',
@@ -48,7 +48,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new IngredientTask(value.tId,value.tTitle,value.pIc);
+    const newIngredient = new IngredientTask(value.tId,value.tTitle,value.pIc,[new IngredientComment(value.comment_id, value.comment,value.comment_auther)]);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {
