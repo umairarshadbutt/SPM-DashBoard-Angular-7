@@ -1,14 +1,14 @@
 <br>
 <hr>
-<div class="board1">
+<div class="board1" cdkDropListGroup>
       <div class="wrapper" *ngFor="let ingredient_ of ingredient; let i=index">
         <div class="list">
           <div class="target">
             <div class="list-header" style="cursor: pointer">
               <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
             </div>
-            <div class="list-cards" *ngIf="ingredient_.name== 'Backlog'">
-              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index">
+            <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'">
+              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index" cdkDrag>
                   <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
               </a>
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
