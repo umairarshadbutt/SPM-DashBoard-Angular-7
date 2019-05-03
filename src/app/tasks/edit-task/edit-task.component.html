@@ -2,6 +2,7 @@
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
      
+          
       <div class="row">
         <div class="col-sm-2 form-group">
           <label for="tId">ID : </label>
@@ -22,7 +23,7 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-4 form-group">
+        <div class="col-sm-3 form-group">
           <label for="pic">Picture URL: </label>
           <input
             type="text"
@@ -32,6 +33,9 @@
             ngModel
             required>
         </div>
+        <div class="col-sm-1 form-group">
+        <button type="button" style="margin:31px" class="btn btn-danger" (click)="onCancel()">X</button>
+       </div>
       </div>
       
     

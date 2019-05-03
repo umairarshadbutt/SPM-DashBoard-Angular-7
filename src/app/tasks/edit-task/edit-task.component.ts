@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { IngredientTask } from '../../ingredientTask.model';
 import { IngredientComment} from '../../IngredientComment.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
@@ -28,7 +29,9 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   editedItem:IngredientTask;
 
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService,
+              private router:Router,
+              private route:ActivatedRoute) { }
   ngOnInit() {
     this.subscription= this.taskService.startedEditing.subscribe(
       (index: number) => {
@@ -67,7 +70,9 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.taskService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
-  
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
   ngOnDestroy(){
 
     this.subscription.unsubscribe();

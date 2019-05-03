@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addName">
       <div class="row">
-        <div class="col-sm-12 form-group">
+        <div class="col-sm-11 form-group">
           <label for="name">New Board Name</label>
           <input
             type="text"
@@ -13,7 +13,9 @@
             required
             >
         </div>
-       
+        <div class="col-sm-1 form-group">
+          <button type="button" style="margin:31px" class="btn btn-danger" (click)="onCancel()">X</button>
+         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">

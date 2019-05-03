@@ -3,6 +3,7 @@ import { TableService } from '../table.service';
 import { Ingredient } from 'src/app/ingredient.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-tables',
@@ -15,7 +16,9 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   editMode = false;
   editedItemIndex:number;
   editedItem:Ingredient;
-  constructor(private taskService: TableService) { }
+  constructor(private taskService: TableService,
+              private router:Router,
+              private route:ActivatedRoute) { }
 
   
   ngOnInit() {
@@ -51,6 +54,9 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   onDelete(){
     this.taskService.deleteIngredient(this.editedItemIndex);
     this.onClear();
+  }
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
   ngOnDestroy(){
 
