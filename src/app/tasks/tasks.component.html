@@ -1,6 +1,4 @@
-<button class="btn btn-success" (click)="onNewBoard()">New Board</button>
-&nbsp;&nbsp;&nbsp;
-<button class="btn btn-success" (click)="onNewTask()">New Task</button>
+<br>
 <hr>
 <div class="board1">
       <div class="wrapper" *ngFor="let ingredient_ of ingredient; let i=index">
@@ -16,16 +14,11 @@
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
             </div>
 
-            <div class="list-cards" *ngIf="ingredient_.name== 'Todo'">
-              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index">
-                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
-              </a>
-              <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
-            </div>
+           
           </div>
         </div>
       </div>
-    
+    <button class="boardButton" (click)="onNewBoard()">New Board</button>
 </div>
   <br>
 <!-- 
