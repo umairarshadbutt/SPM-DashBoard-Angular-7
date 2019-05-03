@@ -1,6 +1,18 @@
 .board1{
     position: relative;
     flex-grow: 1;
+
+
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 .scroll{
     user-select: none;
@@ -71,6 +83,20 @@ h3 {
     z-index: 0;
 }
 
+.open-card-composer {
+    border-radius: 0 0 3px 3px;
+    color: #6b778c;
+    display: block;
+    flex: 0 0 auto;
+    padding: 8px;
+    position: relative;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
 
 
 
