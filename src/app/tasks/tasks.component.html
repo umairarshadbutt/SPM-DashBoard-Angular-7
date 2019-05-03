@@ -2,13 +2,12 @@
 
 <hr>
 <div class="dd" >
-<div  style="cursor: pointer" *ngFor="let ingredient_ of ingredient; let i=index">      
-         <div class="board">
+  <div  >      
+         <div class="board" style="cursor: pointer" *ngFor="let ingredient_ of ingredient; let i=index">
             <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>&nbsp;&nbsp;&nbsp; 
          </div>
-
-         
-    </div>
+  
+  </div>
     
   <!-- 
     ===>data from json
