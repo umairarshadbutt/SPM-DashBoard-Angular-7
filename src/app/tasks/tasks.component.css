@@ -1,3 +1,92 @@
+.board1{
+    position: relative;
+    flex-grow: 1;
+}
+.scroll{
+    user-select: none;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.wrapper {
+    width: 394px;
+    margin: 0 4px;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+}
+.list{
+    
+        background-color: #dfe1e6;
+        border-radius: 3px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        position: relative;
+        white-space: normal;
+    
+}
+.list-header {
+    flex: 0 0 auto;
+    padding: 10px 8px 8px;
+    position: relative;
+    min-height: 20px;
+}
+h3 {
+    font-size: 28px;
+    line-height: 48px;
+    margin: 0 0 8px;
+}
+.list-cards {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 4px;
+    padding: 0 4px;
+    z-index: 1;
+    min-height: 0;
+}
+.list-card {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    cursor: pointer;
+    display: block;
+    margin-bottom: 8px;
+    max-width: 378px;
+    min-height: 20px;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+}
+
+
+
+
+
+
+
+
+.header-target {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .d_{
     background-color: white;
 }
@@ -16,11 +105,15 @@
     h4{
         margin: 1px;
     }
-    .tasks  img{
-        max-height: 30px;
-        float:right;
+     img{
+        max-height: 37px;
+        margin-top: 5px;
+        margin-right: 2px;
+        float: right;
         border-radius: 60px!important;
     }
+    
+    
 
     .dd{
         background-color: white;

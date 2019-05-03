@@ -1,6 +1,32 @@
 <button class="btn btn-success" (click)="onNewBoard()">New Board</button>
-
+&nbsp;&nbsp;&nbsp;
+<button class="btn btn-success" (click)="onNewTask()">New Task</button>
 <hr>
+<div class="board1">
+      <div class="wrapper" *ngFor="let ingredient_ of ingredient; let i=index">
+        <div class="list">
+          <div class="target">
+            <div class="list-header" style="cursor: pointer">
+              <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
+            </div>
+            <div class="list-cards" *ngIf="ingredient_.name== 'Backlog'">
+              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index">
+                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
+              </a>
+            </div>
+
+            <div class="list-cards" *ngIf="ingredient_.name== 'Todo'">
+              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index">
+                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+</div>
+  <br>
+<!-- 
 <div class="dd" >
   <div  >      
          <div class="board" style="cursor: pointer" *ngFor="let ingredient_ of ingredient; let i=index">
@@ -9,17 +35,7 @@
   
   </div>
     
-  <!-- 
-    ===>data from json
-    <div class="container-fluid" *ngFor="let board of board_">
-   
-      <table >
-        <tr >
-          <th class="a">{{board.name}}</th>
-        </tr>
-      
-      </table>
-  </div> -->
+
 </div>
 
 
@@ -29,7 +45,6 @@
       <br>
     </div>
 </div>
-  <button class="btn btn-success" (click)="onNewTask()">New Task</button>
 
   <div  *ngIf="selectedTask">
    <div class="dd">
@@ -45,4 +60,15 @@
   <br><br>
   
 
-
+ -->
+  <!-- 
+    ===>data from json
+    <div class="container-fluid" *ngFor="let board of board_">
+   
+      <table >
+        <tr >
+          <th class="a">{{board.name}}</th>
+        </tr>
+      
+      </table>
+  </div> -->
