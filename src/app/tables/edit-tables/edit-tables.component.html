@@ -2,7 +2,18 @@
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addName">
       <div class="row">
-        <div class="col-sm-11 form-group">
+          <div class="col-sm-2 form-group">
+              <label for="boardID">Board ID</label>
+              <input
+                type="number"
+                id="boardID"
+                class="form-control"
+                name="boardID"
+                ngModel
+                required
+                >
+            </div>
+        <div class="col-sm-9 form-group">
           <label for="name">New Board Name</label>
           <input
             type="text"

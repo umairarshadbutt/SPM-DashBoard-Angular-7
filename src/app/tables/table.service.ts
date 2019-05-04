@@ -6,10 +6,10 @@ export class TableService{
     ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
     private  ingredients: Ingredient[] = [
-            new Ingredient('Backlog'),
-            new Ingredient('Todo'),
-            new Ingredient('In Progress'),
-            new Ingredient('Done'),
+            new Ingredient(1,'Backlog'),
+            new Ingredient(2,'Todo'),
+            new Ingredient(3,'In Progress'),
+            new Ingredient(4,'Done'),
           ];
           getIngredients() {
             return this.ingredients.slice();

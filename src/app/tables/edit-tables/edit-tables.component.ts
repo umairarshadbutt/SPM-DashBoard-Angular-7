@@ -30,6 +30,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
 
         this.slForm.setValue({
           name: this.editedItem.name,
+          boardID: this.editedItem.board_id,
         })
       }
     );
@@ -37,7 +38,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new Ingredient(value.name);
+    const newIngredient = new Ingredient(value.boardID ,value.name);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {

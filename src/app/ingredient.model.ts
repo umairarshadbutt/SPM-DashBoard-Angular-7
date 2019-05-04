@@ -1,3 +1,3 @@
 export class Ingredient {
-    constructor(public name: string) {}
+    constructor(public board_id:number, public name: string) {}
   }
