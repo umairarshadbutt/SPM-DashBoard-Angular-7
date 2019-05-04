@@ -26,12 +26,7 @@ export class TasksComponent implements OnInit, OnDestroy {
               private router: Router,
               private route:ActivatedRoute,
               private slService:TableService) { }
-              todo = [
-                'Get to work',
-                'Pick up groceries',
-                'Go home',
-                'Fall asleep'
-              ];
+    
 
                IngredientTask=[
                 new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
@@ -48,14 +43,6 @@ export class TasksComponent implements OnInit, OnDestroy {
               ];
 
               
-            
-              done = [
-                'Get up',
-                'Brush teeth',
-                'Take a shower',
-                'Check e-mail',
-                'Walk dog'
-              ];
 
   ngOnInit() {
     //this.getTasks();
