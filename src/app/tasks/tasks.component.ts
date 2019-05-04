@@ -7,7 +7,7 @@ import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../ingredient.model';
 import { TableService } from '../tables/table.service';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 
@@ -26,7 +26,20 @@ export class TasksComponent implements OnInit, OnDestroy {
               private router: Router,
               private route:ActivatedRoute,
               private slService:TableService) { }
-
+              todo = [
+                'Get to work',
+                'Pick up groceries',
+                'Go home',
+                'Fall asleep'
+              ];
+            
+              done = [
+                'Get up',
+                'Brush teeth',
+                'Take a shower',
+                'Check e-mail',
+                'Walk dog'
+              ];
 
   ngOnInit() {
     //this.getTasks();
@@ -71,7 +84,17 @@ export class TasksComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+ 
+
+
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 }
