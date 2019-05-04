@@ -7,7 +7,7 @@
             <div class="list-header" style="cursor: pointer">
               <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
             </div>
-            <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'">
+            <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'" (cdkDropListDropped)="drop($event)">
               <a class="list-card" *ngFor="let ingredient of ingredients; let i=index" cdkDrag>
                   <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
               </a>

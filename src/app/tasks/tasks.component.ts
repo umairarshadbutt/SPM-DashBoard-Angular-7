@@ -7,6 +7,7 @@ import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../ingredient.model';
 import { TableService } from '../tables/table.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
 
@@ -69,5 +70,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
   }
 }
