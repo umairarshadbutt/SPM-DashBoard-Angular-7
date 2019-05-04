@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from './tasks/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [ServerService,TableService, TaskService],
   bootstrap: [AppComponent]

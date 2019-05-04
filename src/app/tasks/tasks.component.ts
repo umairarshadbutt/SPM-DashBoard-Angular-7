@@ -5,6 +5,9 @@ import { IngredientTask } from '../ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ingredient } from '../ingredient.model';
+import { TableService } from '../tables/table.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 
@@ -15,13 +18,26 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class TasksComponent implements OnInit, OnDestroy {
   ingredients:IngredientTask[] ;
+  ingredient: Ingredient[] ;
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Task;
   constructor(private tasksService:TaskService,
               private router: Router,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private slService:TableService) { }
+    
 
+               IngredientTask=[
+                new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new IngredientTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new IngredientTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new IngredientTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+              ];
+
+              IngredientTask1=[];
+
+              
 
   ngOnInit() {
     //this.getTasks();
@@ -30,6 +46,13 @@ export class TasksComponent implements OnInit, OnDestroy {
       .subscribe(
         (ingredients: IngredientTask[]) => {
           this.ingredients = ingredients;
+        }
+      );
+
+      this.ingredient = this.slService.getIngredients();
+    this.subscription = this.slService.ingredientsChanged.subscribe(
+        (ingredient: Ingredient[]) => {
+          this.ingredient = ingredient;
         }
       );
   }
@@ -44,12 +67,32 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.router.navigate(['editTask'], {relativeTo: this.route});
     this.tasksService.startedEditing.next(index);
 
-
   }
-  onNewRecipe() {
+
+  onEditItem1(index:number){
+    this.router.navigate(['editBoard'], {relativeTo: this.route});
+    this.slService.startedEditing.next(index);
+  }
+  onNewTask() {
     this.router.navigate(['newTask'], {relativeTo: this.route});
+  }
+  onNewBoard() {
+    this.router.navigate(['newBoard'], {relativeTo: this.route});
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+ 
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 }

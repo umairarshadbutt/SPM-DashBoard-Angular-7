@@ -1,18 +1,20 @@
 <div class="row">
   <div class="col-xs-12">
     <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
+     
+          
       <div class="row">
-        <div class="col-sm-5 form-group">
-          <label for="id">ID : </label>
+        <div class="col-sm-2 form-group">
+          <label for="tId">ID : </label>
           <input
             type="number"
-            id="id"
+            id="tId"
             class="form-control"
             name="tId"
             ngModel
             required>
         </div>
-        <div class="col-sm-2 form-group">
+        <div class="col-sm-6 form-group">
           <label for="task">Task : </label>
           <input
             type="text"
@@ -21,8 +23,8 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-2 form-group">
-          <label for="pic">Picture : </label>
+        <div class="col-sm-3 form-group">
+          <label for="pic">Picture URL: </label>
           <input
             type="text"
             id="pic"
@@ -31,8 +33,12 @@
             ngModel
             required>
         </div>
+        <div class="col-sm-1 form-group">
+        <button type="button" style="margin:31px" class="btn btn-danger" (click)="onCancel()">X</button>
+       </div>
       </div>
       
+    
       <div class="row">
         <div class="col-xs-12">
           <button 
@@ -46,8 +52,5 @@
         </div>
       </div>
     </form>
-    <p>
-      {{task.comments.comment_id}}
-     </p>
-  </div>
+    </div>
 </div>

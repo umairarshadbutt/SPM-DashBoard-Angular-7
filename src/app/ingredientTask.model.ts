@@ -1,4 +1,5 @@
 import { Ingredient } from './ingredient.model';
+import { IngredientComment } from './IngredientComment.model';
 
 export class IngredientTask{
     constructor(public task_id: number,
