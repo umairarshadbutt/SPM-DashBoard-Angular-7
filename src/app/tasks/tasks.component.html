@@ -34,7 +34,7 @@
             <div class="list-header" style="cursor: pointer">
               <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
             </div>
-            <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'" 
+            <!-- <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'" 
             cdkDropList
     #todoList="cdkDropList"
     [cdkDropListData]="ingredients"
@@ -47,8 +47,34 @@
               </a>
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
               </div>
+            </div> -->
+
+
+            <div  cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'"
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="IngredientTask"
+              [cdkDropListConnectedTo]="[doneList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="list-card"  *ngFor="let item of IngredientTask" cdkDrag>
+                <h5>{{item.task_id}}-{{item.task_title}} </h5>
+              </div>
+            </div>
+        
+          
+            <div *ngIf="ingredient_.name== 'Todo'"
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="IngredientTask1"
+              [cdkDropListConnectedTo]="[todoList]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              <div class="list-card" *ngFor="let item of IngredientTask1" cdkDrag>{{item.task_id}}-{{item.task_title}}</div>
             </div>
 
+
+<!-- 
             <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Todo'" 
               cdkDropList
               #todoList="cdkDropList"
@@ -61,7 +87,7 @@
               </a>
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
               </div>
-            </div>
+            </div> -->
 
            
           </div>

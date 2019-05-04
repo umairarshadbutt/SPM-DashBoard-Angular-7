@@ -14,7 +14,7 @@ import { EditTablesComponent } from './tables/edit-tables/edit-tables.component'
 import { FormsModule } from '@angular/forms';
 import { TaskService } from './tasks/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
-import { HeaderComponent } from './header/header.component';
+
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -25,8 +25,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     CommentComponent,
     TaskDetailComponent,
     EditTablesComponent,
-    EditTaskComponent,
-    HeaderComponent
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
