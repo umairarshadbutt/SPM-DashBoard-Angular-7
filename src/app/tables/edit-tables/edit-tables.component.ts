@@ -40,7 +40,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new Ingredient(value.boardID ,value.name, [new IngredientTask(value.taskId, value.taskTitle, value.assigned)]);
+    const newIngredient = new Ingredient(value.boardID ,value.name, []);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {
