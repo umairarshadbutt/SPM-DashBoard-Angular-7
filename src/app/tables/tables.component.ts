@@ -31,11 +31,11 @@ export class TablesComponent  implements OnInit, OnDestroy{
   // }
   ingredients: Ingredient[] ;
   private subscription: Subscription;
-  constructor(private slService: TableService) { }
+  constructor(private tableService: TableService) { }
 
   ngOnInit() {
-    this.ingredients = this.slService.getIngredients();
-    this.subscription = this.slService.ingredientsChanged
+    this.ingredients = this.tableService.getIngredients();
+    this.subscription = this.tableService.ingredientsChanged
       .subscribe(
         (ingredients: Ingredient[]) => {
           this.ingredients = ingredients;
@@ -43,7 +43,7 @@ export class TablesComponent  implements OnInit, OnDestroy{
       );
   }
   onEditItem(index:number){
-    this.slService.startedEditing.next(index);
+    this.tableService.startedEditing.next(index);
 
 
   }
