@@ -6,7 +6,7 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
-import { TaskService } from '../tasks.service';
+import { TaskService } from '../../services/tasks.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { IngredientTask } from '../../Task.model';

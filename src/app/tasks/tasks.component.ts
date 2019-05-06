@@ -3,10 +3,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
 import { IngredientTask } from '../Task.model';
 import { Subscription } from 'rxjs/Subscription';
-import { TaskService } from './tasks.service';
+import { TaskService } from '../services/tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../Box.model';
-import { TableService } from '../tables/table.service';
+import { TableService } from '../services/table.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 

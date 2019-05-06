@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Board, Task } from '../task';
 import { TaskService } from '../tasks.service';
 import { Ingredient } from '../Box.model';
-import { TableService } from './table.service';
+import { TableService } from '../services/table.service';
 import { Subscription } from 'rxjs';
 
 @Component({

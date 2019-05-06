@@ -1,4 +1,4 @@
-import { TableService } from './tables/table.service';
+import { TableService } from './services/table.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +12,7 @@ import { CommentComponent } from './comment/comment.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
 import { FormsModule } from '@angular/forms';
-import { TaskService } from './tasks/tasks.service';
+import { TaskService } from './services/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
