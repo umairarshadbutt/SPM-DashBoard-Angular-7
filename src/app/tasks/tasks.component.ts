@@ -5,7 +5,7 @@ import { IngredientTask } from '../ingredientTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Ingredient } from '../ingredient.model';
+import { Ingredient } from '../Box.model';
 import { TableService } from '../tables/table.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 

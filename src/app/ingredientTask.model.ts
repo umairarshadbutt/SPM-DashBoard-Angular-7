@@ -1,4 +1,4 @@
-import { Ingredient } from './ingredient.model';
+import { Ingredient } from './Box.model';
 import { IngredientComment } from './IngredientComment.model';
 
 export class IngredientTask{

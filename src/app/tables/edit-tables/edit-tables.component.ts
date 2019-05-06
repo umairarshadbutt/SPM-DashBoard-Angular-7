@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { TableService } from '../table.service';
-import { Ingredient } from 'src/app/ingredient.model';
+import { Ingredient } from 'src/app/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';

@@ -1,5 +1,5 @@
 
-import { Ingredient } from './../ingredient.model';
+import { Ingredient } from '../Box.model';
 import { Subject } from 'rxjs/Subject';
 import { IngredientTask } from '../ingredientTask.model';
 export class TableService{

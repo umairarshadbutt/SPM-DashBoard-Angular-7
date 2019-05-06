@@ -2,7 +2,7 @@ import { boards } from './../mock_task';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Board, Task } from '../task';
 import { TaskService } from '../tasks.service';
-import { Ingredient } from '../ingredient.model';
+import { Ingredient } from '../Box.model';
 import { TableService } from './table.service';
 import { Subscription } from 'rxjs';
 
