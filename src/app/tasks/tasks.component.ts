@@ -21,7 +21,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   ingredient: Ingredient[] ;
   private subscription: Subscription;
   //task:Task[];
-  selectedTask: Task;
   constructor(private tasksService:TaskService,
               private router: Router,
               private route:ActivatedRoute,
@@ -56,9 +55,7 @@ export class TasksComponent implements OnInit, OnDestroy {
         }
       );
   }
-  onSelect(task:Task): void{
-    this.selectedTask=task;
-  }
+
   // getTasks():void{
   //   this.tasksService.getTask().subscribe(task=> this.task=task);
   // }
