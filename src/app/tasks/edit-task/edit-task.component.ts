@@ -9,7 +9,7 @@ import {
 import { TaskService } from '../../services/tasks.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
-import { IngredientTask } from '../../Task.model';
+import { BoxTask } from '../../Task.model';
 import { IngredientComment} from '../../IngredientComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -26,7 +26,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
-  editedItem:IngredientTask;
+  editedItem:BoxTask;
 
 
   constructor(private taskService: TaskService,
@@ -52,7 +52,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new IngredientTask(value.tId,value.tTitle,value.pIc);
+    const newIngredient = new BoxTask(value.tId,value.tTitle,value.pIc);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {

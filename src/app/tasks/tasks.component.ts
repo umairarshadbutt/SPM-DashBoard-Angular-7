@@ -1,11 +1,11 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
-import { IngredientTask } from '../Task.model';
+import { BoxTask } from '../Task.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from '../services/tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Ingredient } from '../Box.model';
+import { Box } from '../Box.model';
 import { TableService } from '../services/table.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
@@ -17,8 +17,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit, OnDestroy {
-  ingredients:IngredientTask[] ;
-  ingredient: Ingredient[] ;
+  ingredients:BoxTask[] ;
+  ingredient: Box[] ;
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Task;
@@ -29,10 +29,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     
 
                IngredientTask=[
-                new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new BoxTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new BoxTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new BoxTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+                new BoxTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
               ];
 
               IngredientTask1=[];
@@ -44,14 +44,14 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.ingredients = this.tasksService.getIngredients();
     this.subscription = this.tasksService.IngredientChanged
       .subscribe(
-        (ingredients: IngredientTask[]) => {
+        (ingredients: BoxTask[]) => {
           this.ingredients = ingredients;
         }
       );
 
       this.ingredient = this.slService.getIngredients();
     this.subscription = this.slService.ingredientsChanged.subscribe(
-        (ingredient: Ingredient[]) => {
+        (ingredient: Box[]) => {
           this.ingredient = ingredient;
         }
       );

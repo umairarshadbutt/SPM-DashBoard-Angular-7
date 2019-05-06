@@ -1,5 +1,5 @@
-import { IngredientTask } from './Task.model';
+import { BoxTask } from './Task.model';
 
-export class Ingredient {
-    constructor(public board_id:number, public name: string, public task:IngredientTask[]) {}
+export class Box {
+    constructor(public board_id:number, public name: string, public task:BoxTask[]) {}
   }

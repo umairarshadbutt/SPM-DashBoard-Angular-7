@@ -1,15 +1,15 @@
 import { Subject } from 'rxjs/Subject';
-import { IngredientTask } from '../Task.model';
+import { BoxTask } from '../Task.model';
 import {IngredientComment} from '../IngredientComment.model';
 export class TaskService{
-    IngredientChanged= new Subject<IngredientTask[]>();
+    IngredientChanged= new Subject<BoxTask[]>();
 
   startedEditing = new Subject<number>();
-    private ingredient: IngredientTask[]=[
-        new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new IngredientTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new IngredientTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new IngredientTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+    private ingredient: BoxTask[]=[
+        new BoxTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+        new BoxTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+        new BoxTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
+        new BoxTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
       ];
 
 
@@ -20,15 +20,15 @@ export class TaskService{
         return this.ingredient[index];
       }
     
-      addIngredient(ingredient: IngredientTask) {
+      addIngredient(ingredient: BoxTask) {
         this.ingredient.push(ingredient);
         this.IngredientChanged.next(this.ingredient.slice());
       }
-      updateIngredient(index: number, newIngredient:IngredientTask){
+      updateIngredient(index: number, newIngredient:BoxTask){
         this.ingredient[index] = newIngredient;
         this.IngredientChanged.next(this.ingredient.slice());
       }
-      addIngredients(ingredients: IngredientTask[]) {
+      addIngredients(ingredients: BoxTask[]) {
         // for (let ingredient of ingredients) {
         //   this.addIngredient(ingredient);
         // }

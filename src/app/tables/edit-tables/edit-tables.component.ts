@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { TableService } from '../../services/table.service';
-import { Ingredient } from 'src/app/Box.model';
+import { Box } from 'src/app/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IngredientTask } from 'src/app/Task.model';
+import { BoxTask } from 'src/app/Task.model';
 
 @Component({
   selector: 'app-edit-tables',
@@ -16,7 +16,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
-  editedItem:Ingredient;
+  editedItem:Box;
   constructor(private taskService: TableService,
               private router:Router,
               private route:ActivatedRoute) { }
@@ -40,7 +40,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new Ingredient(value.boardID ,value.name, []);
+    const newIngredient = new Box(value.boardID ,value.name, []);
     if (this.editMode){
       this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {
