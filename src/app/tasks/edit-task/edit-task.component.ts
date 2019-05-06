@@ -9,7 +9,7 @@ import {
 import { TaskService } from '../tasks.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
-import { IngredientTask } from '../../ingredientTask.model';
+import { IngredientTask } from '../../Task.model';
 import { IngredientComment} from '../../IngredientComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 

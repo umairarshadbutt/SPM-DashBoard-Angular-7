@@ -1,7 +1,7 @@
 
 import { Ingredient } from '../Box.model';
 import { Subject } from 'rxjs/Subject';
-import { IngredientTask } from '../ingredientTask.model';
+import { IngredientTask } from '../Task.model';
 export class TableService{
     
     ingredientsChanged = new Subject<Ingredient[]>();

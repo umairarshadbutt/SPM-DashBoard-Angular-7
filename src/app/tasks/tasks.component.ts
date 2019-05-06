@@ -1,7 +1,7 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
-import { IngredientTask } from '../ingredientTask.model';
+import { IngredientTask } from '../Task.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TaskService } from './tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';

@@ -4,7 +4,7 @@ import { Ingredient } from 'src/app/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IngredientTask } from 'src/app/ingredientTask.model';
+import { IngredientTask } from 'src/app/Task.model';
 
 @Component({
   selector: 'app-edit-tables',
