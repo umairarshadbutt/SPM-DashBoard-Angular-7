@@ -2,6 +2,7 @@
 import { Box } from '../Box.model';
 import { Subject } from 'rxjs/Subject';
 import { BoxTask } from '../Task.model';
+import { DropListRef } from '@angular/cdk/drag-drop';
 export class TableService{
     
     ingredientsChanged = new Subject<Box[]>();
@@ -87,11 +88,13 @@ export class TableService{
             this.ingredientsChangedTask.next(Box.task.slice());
             }
           }
-
-          deleteTask(index: number){
-            for (let Box of this.Boxes){
-            Box.task.splice(index,1);
-            this.ingredientsChangedTask.next(Box.task.slice());
+          deleteTask(tId: number){
+            for(let task_ of this.Boxes){
+            task_.task.forEach( (task, index) => {
+            if(task.task_id === tId) task_.task.splice(index,1);
+            this.ingredientsChangedTask.next(task_.task.slice());
+            });
             }
-          }
+            }
+         
         }

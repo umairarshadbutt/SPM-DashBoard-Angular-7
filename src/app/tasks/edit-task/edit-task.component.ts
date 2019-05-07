@@ -6,15 +6,12 @@ import {
   ViewChild,
   OnDestroy
 } from '@angular/core';
-import { TaskService } from '../../services/tasks.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { BoxTask } from '../../Task.model';
-import { IngredientComment} from '../../IngredientComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TableService } from 'src/app/services/table.service';
 import { Box } from 'src/app/Box.model';
-import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-edit-task',
@@ -63,7 +60,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       }
     );
   }
- 
+
   onSubmit(form: NgForm) {
     const value= form.value;
     const newTask = new BoxTask(value.tId,value.tTitle,value.pIc);
