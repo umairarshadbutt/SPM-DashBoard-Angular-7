@@ -64,11 +64,14 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     );
   }
  
-  
   onSubmit(form: NgForm) {
     const value= form.value;
     const newTask = new BoxTask(value.tId,value.tTitle,value.pIc);
-     
+    if (this.editMode){
+      this.boxService.updateTask(this.editedItemIndex,newTask);
+    } else  {
+      this.boxService.addTask(newTask);
+    }  
     this.editMode=false;
     form.reset();
   }
@@ -78,7 +81,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.editMode=false;
   }
   onDelete(){
-    this.boxService.deleteIngredient(this.editedItemIndex);
+    this.boxService.deleteTask(this.editedItemIndex);
     this.onClear();
   }
   onCancel() {

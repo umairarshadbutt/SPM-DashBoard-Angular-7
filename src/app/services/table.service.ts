@@ -5,6 +5,7 @@ import { BoxTask } from '../Task.model';
 export class TableService{
     
     ingredientsChanged = new Subject<Box[]>();
+    ingredientsChangedTask = new Subject<BoxTask[]>();
   startedEditing = new Subject<number>();
     private  Boxes: Box[] = [
             new Box(1,'Backlog', [new BoxTask(1, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTask(2, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),
@@ -44,10 +45,6 @@ export class TableService{
             this.ingredientsChanged.next(this.Boxes.slice());
           }
 
-
-
-
-
           getTasks() {
             for (let Box of this.Boxes){
               
@@ -63,6 +60,38 @@ export class TableService{
           }
             }
           }
+
+
+
+          addTask(tasks: BoxTask) {
+            for (let Box of this.Boxes){
+              if(Box.board_id==1){
+            Box.task.push(tasks);
+            this.ingredientsChangedTask.next(Box.task.slice());
+          }
+            }
+          }
         
-     
+          addTasks(tasks: BoxTask[]) {
+           
+            for (let Box of this.Boxes){
+              if(Box.board_id==1){
+            Box.task.push(...tasks);
+            this.ingredientsChangedTask.next(Box.task.slice());
+            }
+          }
+          }
+          updateTask(index: number, newIngredient:BoxTask){
+            for (let Box of this.Boxes){
+            Box.task[index] = newIngredient;
+            this.ingredientsChangedTask.next(Box.task.slice());
+            }
+          }
+
+          deleteTask(index: number){
+            for (let Box of this.Boxes){
+            Box.task.splice(index,1);
+            this.ingredientsChangedTask.next(Box.task.slice());
+            }
+          }
         }
