@@ -84,9 +84,12 @@ export class TableService{
           }
           updateTask(index: number, newIngredient:BoxTask){
             for (let Box of this.Boxes){
-            Box.task[index] = newIngredient;
+              for(let temp in Box.task){
+                let value=Box.task[temp]
+                if (value.task_id==index){
+                  Box.task[temp] = newIngredient;
             this.ingredientsChangedTask.next(Box.task.slice());
-            }
+            }}}
           }
           deleteTask(tId: number){
             for(let task_ of this.Boxes){

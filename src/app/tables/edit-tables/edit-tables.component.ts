@@ -36,7 +36,6 @@ export class EditTablesComponent implements OnInit,OnDestroy {
       }
     );
   }
-
   onSubmit(form: NgForm) {
     const value= form.value;
     const newIngredient = new Box(value.boardID ,value.name, []);
