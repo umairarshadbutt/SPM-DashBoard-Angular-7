@@ -41,7 +41,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       (index: number) => {
         this.editedItemIndex=index;
         this.editMode = true;
-        this.editedItem=this.boxService.getIngredient(index);
+        this.editedTask=this.boxService.getTask(index);
        
       }
     );
@@ -52,15 +52,14 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index);
-        for(let tsk of this.editedItem.task){
-          
+       
         this.slForm.setValue({
           
-          tId: tsk.task_id,
-          tTitle: tsk.task_title,
-          pIc: tsk.assigned
+          tId: this.editedTask.task_id,
+          tTitle: this.editedTask.task_title,
+          pIc: this.editedTask.assigned
           
-         })}
+         })
       }
     );
   }

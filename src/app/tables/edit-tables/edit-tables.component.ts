@@ -5,7 +5,6 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BoxTask } from 'src/app/Task.model';
-
 @Component({
   selector: 'app-edit-tables',
   templateUrl: './edit-tables.component.html',
@@ -17,17 +16,17 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   editMode = false;
   editedItemIndex:number;
   editedItem:Box;
-  constructor(private taskService: TableService,
+  constructor(private boxService: TableService,
               private router:Router,
               private route:ActivatedRoute) { }
 
   
   ngOnInit() {
-    this.subscription= this.taskService.startedEditing.subscribe(
+    this.subscription= this.boxService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex=index;
         this.editMode = true;
-        this.editedItem=this.taskService.getIngredient(index);
+        this.editedItem=this.boxService.getIngredient(index);
 
         this.slForm.setValue({
           name: this.editedItem.name,
@@ -42,9 +41,9 @@ export class EditTablesComponent implements OnInit,OnDestroy {
     const value= form.value;
     const newIngredient = new Box(value.boardID ,value.name, []);
     if (this.editMode){
-      this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
+      this.boxService.updateIngredient(this.editedItemIndex,newIngredient);
     } else {
-      this.taskService.addIngredient(newIngredient);
+      this.boxService.addIngredient(newIngredient);
     }   
     this.editMode=false;
     form.reset();
@@ -55,7 +54,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
     this.editMode=false;
   }
   onDelete(){
-    this.taskService.deleteIngredient(this.editedItemIndex);
+    this.boxService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
   onCancel() {
