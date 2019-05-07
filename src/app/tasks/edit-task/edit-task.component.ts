@@ -12,6 +12,9 @@ import { NgForm } from '@angular/forms';
 import { BoxTask } from '../../Task.model';
 import { IngredientComment} from '../../IngredientComment.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TableService } from 'src/app/services/table.service';
+import { Box } from 'src/app/Box.model';
+import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-edit-task',
@@ -26,25 +29,38 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
-  editedItem:BoxTask;
+  editedItem:Box;
+  editedTask: BoxTask;
 
 
-  constructor(private taskService: TaskService,
+  constructor(private boxService: TableService,
               private router:Router,
               private route:ActivatedRoute) { }
   ngOnInit() {
-    this.subscription= this.taskService.startedEditing.subscribe(
+    this.subscription= this.boxService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex=index;
         this.editMode = true;
-        this.editedItem=this.taskService.getIngredient(index);
+        this.editedItem=this.boxService.getIngredient(index);
+       
+      }
+    );
 
-        this.slForm.setValue({
-          tId: this.editedItem.task_id,
-          tTitle: this.editedItem.task_title,
-          pIc: this.editedItem.assigned
+
+    this.subscription= this.boxService.startedEditing.subscribe(
+      (index: number) => {
+        this.editedItemIndex=index;
+        this.editMode = true;
+        this.editedTask=this.boxService.getTask(index);
+        for(let tsk of this.editedItem.task){
           
-        })
+        this.slForm.setValue({
+          
+          tId: tsk.task_id,
+          tTitle: tsk.task_title,
+          pIc: tsk.assigned
+          
+         })}
       }
     );
   }
@@ -52,12 +68,8 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new BoxTask(value.tId,value.tTitle,value.pIc);
-    if (this.editMode){
-      this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
-    } else {
-      this.taskService.addIngredient(newIngredient);
-    }   
+    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc);
+     
     this.editMode=false;
     form.reset();
   }
@@ -67,7 +79,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.editMode=false;
   }
   onDelete(){
-    this.taskService.deleteIngredient(this.editedItemIndex);
+    this.boxService.deleteIngredient(this.editedItemIndex);
     this.onClear();
   }
   onCancel() {

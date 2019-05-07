@@ -5,7 +5,7 @@ export class TaskService{
     IngredientChanged= new Subject<BoxTask[]>();
 
   startedEditing = new Subject<number>();
-    private ingredient: BoxTask[]=[
+    private task: BoxTask[]=[
         new BoxTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
         new BoxTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
         new BoxTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
@@ -14,29 +14,29 @@ export class TaskService{
 
 
       getIngredients() {
-        return this.ingredient.slice();
+        return this.task.slice();
       }
       getIngredient(index:number){
-        return this.ingredient[index];
+        return this.task[index];
       }
     
-      addIngredient(ingredient: BoxTask) {
-        this.ingredient.push(ingredient);
-        this.IngredientChanged.next(this.ingredient.slice());
+      addIngredient(task: BoxTask) {
+        this.task.push(task);
+        this.IngredientChanged.next(this.task.slice());
       }
       updateIngredient(index: number, newIngredient:BoxTask){
-        this.ingredient[index] = newIngredient;
-        this.IngredientChanged.next(this.ingredient.slice());
+        this.task[index] = newIngredient;
+        this.IngredientChanged.next(this.task.slice());
       }
       addIngredients(ingredients: BoxTask[]) {
         // for (let ingredient of ingredients) {
         //   this.addIngredient(ingredient);
         // }
-        this.ingredient.push(...ingredients);
-        this.IngredientChanged.next(this.ingredient.slice());
+        this.task.push(...ingredients);
+        this.IngredientChanged.next(this.task.slice());
       }
       deleteIngredient(index: number){
-        this.ingredient.splice(index,1);
-        this.IngredientChanged.next(this.ingredient.slice());
+        this.task.splice(index,1);
+        this.IngredientChanged.next(this.task.slice());
       }
 }

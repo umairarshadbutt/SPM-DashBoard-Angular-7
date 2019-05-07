@@ -25,7 +25,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   constructor(private tasksService:TaskService,
               private router: Router,
               private route:ActivatedRoute,
-              private slService:TableService) { }
+              private boxService:TableService) { }
     
 
                IngredientTask=[
@@ -41,16 +41,10 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //this.getTasks();
-    this.ingredients = this.tasksService.getIngredients();
-    this.subscription = this.tasksService.IngredientChanged
-      .subscribe(
-        (ingredients: BoxTask[]) => {
-          this.ingredients = ingredients;
-        }
-      );
+    
 
-      this.ingredient = this.slService.getIngredients();
-    this.subscription = this.slService.ingredientsChanged.subscribe(
+      this.ingredient = this.boxService.getIngredients();
+    this.subscription = this.boxService.ingredientsChanged.subscribe(
         (ingredient: Box[]) => {
           this.ingredient = ingredient;
         }
@@ -65,13 +59,13 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   onEditItem(index:number){
     this.router.navigate(['editTask'], {relativeTo: this.route});
-    this.tasksService.startedEditing.next(index);
+    this.boxService.startedEditing.next(index);
 
   }
 
   onEditItem1(index:number){
     this.router.navigate(['editBoard'], {relativeTo: this.route});
-    this.slService.startedEditing.next(index);
+    this.boxService.startedEditing.next(index);
   }
   onNewTask() {
     this.router.navigate(['newTask'], {relativeTo: this.route});
