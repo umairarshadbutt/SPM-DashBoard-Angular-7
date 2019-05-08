@@ -4,7 +4,7 @@ import { Box } from 'src/app/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BoxTask } from 'src/app/Task.model';
+import { BoxTask } from 'src/app/BoxTask.model';
 @Component({
   selector: 'app-edit-tables',
   templateUrl: './edit-tables.component.html',

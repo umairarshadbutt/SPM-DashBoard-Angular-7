@@ -1,7 +1,6 @@
 import { Box } from '../Box.model';
 import { Subject } from 'rxjs/Subject';
-import { BoxTask } from '../Task.model';
-import { DropListRef } from '@angular/cdk/drag-drop';
+import { BoxTask } from '../BoxTask.model';
 export class TableService{
     ingredientsChanged = new Subject<Box[]>();
     ingredientsChangedTask = new Subject<BoxTask[]>();

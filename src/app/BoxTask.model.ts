@@ -1,5 +1,4 @@
-import { Box } from './Box.model';
-import { IngredientComment } from './IngredientComment.model';
+
 
 export class BoxTask{
     constructor(public task_id: number,

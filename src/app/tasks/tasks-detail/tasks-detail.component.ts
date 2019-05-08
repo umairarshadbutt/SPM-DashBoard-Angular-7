@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
-import { BoxTask } from '../../Task.model';
+import { BoxTask } from '../../BoxTask.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TableService } from 'src/app/services/table.service';
 import { Box } from 'src/app/Box.model';

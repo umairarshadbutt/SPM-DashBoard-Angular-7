@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs/Subject';
-import { BoxTask } from '../Task.model';
+import { BoxTask } from '../BoxTask.model';
 import {IngredientComment} from '../IngredientComment.model';
 export class TaskService{
     IngredientChanged= new Subject<BoxTask[]>();
