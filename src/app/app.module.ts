@@ -16,6 +16,7 @@ import { TaskService } from './services/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TasksDetailComponent } from './tasks/tasks-detail/tasks-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     CommentComponent,
     TaskDetailComponent,
     EditTablesComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    TasksDetailComponent
   ],
   imports: [
     BrowserModule,

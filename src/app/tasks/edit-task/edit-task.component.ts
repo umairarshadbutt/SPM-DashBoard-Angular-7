@@ -20,7 +20,6 @@ import { Box } from 'src/app/Box.model';
 })
 
 
-
 export class EditTaskComponent implements OnInit, OnDestroy{
   @ViewChild('f') slForm:NgForm;
   subscription: Subscription;
