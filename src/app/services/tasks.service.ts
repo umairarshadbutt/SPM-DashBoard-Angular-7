@@ -6,11 +6,7 @@ export class TaskService{
 
   startedEditing = new Subject<number>();
     private task: BoxTask[]=[
-        new BoxTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new BoxTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new BoxTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-        new BoxTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-      ];
+     ];
 
 
       getIngredients() {

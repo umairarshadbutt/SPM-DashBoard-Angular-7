@@ -62,7 +62,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc);
+    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,newTask);
     } else  {
