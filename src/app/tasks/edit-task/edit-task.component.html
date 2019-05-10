@@ -14,7 +14,7 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-6 form-group">
+        <div class="col-sm-5 form-group">
           <label for="task">Task : </label>
           <input
             type="text"
@@ -23,7 +23,7 @@
             ngModel
             required>
         </div>
-        <div class="col-sm-3 form-group">
+        <div class="col-sm-2 form-group">
           <label for="pic">Picture URL: </label>
           <input
             type="text"
@@ -33,9 +33,41 @@
             ngModel
             required>
         </div>
+        <div class="col-sm-2 form-group">
+            <label for="cId">Comment ID: </label>
+            <input
+              type="text"
+              id="cId"
+              name="cId"
+              class="form-control"
+              ngModel
+              required>
+          </div>
+          <div class="col-sm-2 form-group">
+              <label for="cComment">Comment: </label>
+              <input
+                type="text"
+                id="cComment"
+                name="cComment"
+                class="form-control"
+                ngModel
+                required>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="cAuthor">Comment Author: </label>
+                <input
+                  type="text"
+                  id="cAuthor"
+                  name="cAuthor"
+                  class="form-control"
+                  ngModel
+                  required>
+              </div>
         <div class="col-sm-1 form-group">
         <button type="button" style="margin:31px" class="btn btn-danger" (click)="onCancel()">X</button>
        </div>
+<br>
+      
       </div>
       
     

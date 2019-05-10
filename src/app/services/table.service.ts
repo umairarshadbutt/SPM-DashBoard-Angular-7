@@ -8,9 +8,9 @@ export class TableService{
   startedEditing = new Subject<number>();
     private  Boxes: Box[] = [
             new Box(1,'Backlog', [new BoxTask(1, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg" ,[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),new BoxTask(2, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),
-            new BoxTask(3, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),new BoxTask(4, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),
-            new BoxTask(5, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),new BoxTask(6, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),
-            new BoxTask(7, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),new BoxTask(8, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[]),
+            new BoxTask(3, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),new BoxTask(4, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),
+            new BoxTask(5, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),new BoxTask(6, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),
+            new BoxTask(7, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),new BoxTask(8, "Create a Kanaban Board tool","https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg",[new BoxTaskComment(1,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg"),new BoxTaskComment(2,'Please use company\'s color scheme. Use different color codes for board columns',"https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg")]),
           ]),
             new Box(2,'Todo', []),
             new Box(3,'In Progress', []),
@@ -60,6 +60,25 @@ export class TableService{
             }
           }
 
+
+          getComments() {
+            for (let Box of this.Boxes){
+              for(let task of Box.task){
+                for (let comments of task.comment){
+            return comments}}
+            }
+          }
+          getComment(index:number){
+            for (let Box of this.Boxes){
+              for(let task of Box.task){ 
+                for (let comments of task.comment){
+                if (task.task_id==index){
+            return comments;
+            break;
+                }}
+          }
+            }
+          }
 
 
           addTask(tasks: BoxTask) {

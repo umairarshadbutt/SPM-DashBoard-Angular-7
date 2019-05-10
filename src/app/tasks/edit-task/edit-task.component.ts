@@ -12,6 +12,7 @@ import { BoxTask } from '../../BoxTask.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TableService } from 'src/app/services/table.service';
 import { Box } from 'src/app/Box.model';
+import { BoxTaskComment } from 'src/app/BoxTaskComment.module';
 
 @Component({
   selector: 'app-edit-task',
@@ -27,6 +28,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   editedItemIndex:number;
   editedItem:Box;
   editedTask: BoxTask;
+  editedComment: BoxTaskComment;
 
 
   constructor(private boxService: TableService,
@@ -38,6 +40,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index);
+        this.editedComment=this.boxService.getComment(index);
        
       }
     );
@@ -48,12 +51,16 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index);
+        this.editedComment=this.boxService.getComment(index);
        
         this.slForm.setValue({
           
           tId: this.editedTask.task_id,
           tTitle: this.editedTask.task_title,
-          pIc: this.editedTask.assigned
+          pIc: this.editedTask.assigned,
+          cId: this.editedComment.comment_id,
+          cComment:this.editedComment.comment,
+          cAuthor: this.editedComment.comment_auther,
           
          })
       }
@@ -62,7 +69,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
+    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[value.cID,value.cComment, value.cAuthor]);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,newTask);
     } else  {
