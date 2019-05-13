@@ -58,9 +58,6 @@ export class EditTaskComponent implements OnInit, OnDestroy{
           tId: this.editedTask.task_id,
           tTitle: this.editedTask.task_title,
           pIc: this.editedTask.assigned,
-          cId: this.editedComment.comment_id,
-          cComment:this.editedComment.comment,
-          cAuthor: this.editedComment.comment_auther,
           
          })
       }
