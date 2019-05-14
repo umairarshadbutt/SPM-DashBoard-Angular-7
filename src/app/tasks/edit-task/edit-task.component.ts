@@ -29,7 +29,8 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   editedItem:Box;
   editedTask: BoxTask;
   editedComment: BoxTaskComment;
-
+  ingredients:BoxTask[] ;
+  ingredient: Box[] ;
 
   constructor(private boxService: TableService,
               private router:Router,
@@ -45,7 +46,12 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       }
     );
 
-
+    this.ingredient = this.boxService.getIngredients();
+    this.subscription = this.boxService.ingredientsChanged.subscribe(
+        (ingredient: Box[]) => {
+          this.ingredient = ingredient;
+        }
+      );
     this.subscription= this.boxService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex=index;

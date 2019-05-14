@@ -1,3 +1,4 @@
+//import { Box } from 'src/app/Box.model';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
@@ -21,7 +22,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   ingredient: Box[] ;
   private subscription: Subscription;
   //task:Task[];
-  selectedTask: Task;
+  selectedTask: Box;
   constructor(private tasksService:TaskService,
               private router: Router,
               private route:ActivatedRoute,
@@ -41,7 +42,7 @@ export class TasksComponent implements OnInit, OnDestroy {
         }
       );
   }
-  onSelect(task:Task): void{
+  onSelect(task:Box): void{
     this.selectedTask=task;
   }
   // getTasks():void{
