@@ -26,7 +26,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
       (index: number) => {
         this.editedItemIndex=index;
         this.editMode = true;
-        this.editedItem=this.boxService.getIngredient(index);
+        this.editedItem=this.boxService.getBox(index);
 
         this.slForm.setValue({
           name: this.editedItem.name,
@@ -38,11 +38,11 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   }
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new Box(value.boardID ,value.name, []);
+    const newBox = new Box(value.boardID ,value.name, []);
     if (this.editMode){
-      this.boxService.updateIngredient(this.editedItemIndex,newIngredient);
+      this.boxService.updateBox(this.editedItemIndex,newBox);
     } else {
-      this.boxService.addIngredient(newIngredient);
+      this.boxService.addBox(newBox);
     }   
     this.editMode=false;
     form.reset();
@@ -53,7 +53,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
     this.editMode=false;
   }
   onDelete(){
-    this.boxService.deleteIngredient(this.editedItemIndex);
+    this.boxService.deleteBox(this.editedItemIndex);
     this.onClear();
   }
   onCancel() {

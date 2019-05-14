@@ -11,7 +11,6 @@ import { ServerService } from './server.service';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
 import { FormsModule } from '@angular/forms';
-import { TaskService } from './services/tasks.service';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -32,7 +31,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FormsModule,
     DragDropModule
   ],
-  providers: [ServerService,TableService, TaskService],
+  providers: [ServerService,TableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

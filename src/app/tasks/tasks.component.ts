@@ -4,7 +4,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
 import { BoxTask } from '../BoxTask.model';
 import { Subscription } from 'rxjs/Subscription';
-import { TaskService } from '../services/tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Box } from '../Box.model';
 import { TableService } from '../services/table.service';
@@ -23,7 +22,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Box;
-  constructor(private tasksService:TaskService,
+  constructor(
               private router: Router,
               private route:ActivatedRoute,
               private boxService:TableService) { }
@@ -35,8 +34,8 @@ export class TasksComponent implements OnInit, OnDestroy {
     //this.getTasks();
     
 
-      this.ingredient = this.boxService.getIngredients();
-    this.subscription = this.boxService.ingredientsChanged.subscribe(
+      this.ingredient = this.boxService.getBoxes();
+    this.subscription = this.boxService.BoxesChanged.subscribe(
         (ingredient: Box[]) => {
           this.ingredient = ingredient;
         }

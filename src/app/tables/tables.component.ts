@@ -33,8 +33,8 @@ export class TablesComponent  implements OnInit, OnDestroy{
   constructor(private tableService: TableService) { }
 
   ngOnInit() {
-    this.Boxs = this.tableService.getIngredients();
-    this.subscription = this.tableService.ingredientsChanged
+    this.Boxs = this.tableService.getBoxes();
+    this.subscription = this.tableService.BoxesChanged
       .subscribe(
         (ingredients: Box[]) => {
           this.Boxs = ingredients;

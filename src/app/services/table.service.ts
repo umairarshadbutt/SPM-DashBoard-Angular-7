@@ -4,9 +4,9 @@ import { Subject } from 'rxjs/Subject';
 import { BoxTask } from '../BoxTask.model';
 import { BoxTaskComment } from '../BoxTaskComment.module';
 export class TableService{
-    ingredientsChanged = new Subject<Box[]>();
-    ingredientsChangedTask = new Subject<BoxTask[]>();
-    ingredientsChangedComments = new Subject<BoxTaskComment[]>();
+    BoxesChanged = new Subject<Box[]>();
+    BoxesChangedTask = new Subject<BoxTask[]>();
+    BoxesChangedComments = new Subject<BoxTaskComment[]>();
 
   startedEditing = new Subject<number>();
     private  Boxes: Box[] = [
@@ -18,32 +18,32 @@ export class TableService{
             new Box(3,'In Progress', []),
             new Box(4,'Done',[]),
           ];
-          getIngredients() {
+          getBoxes() {
             return this.Boxes.slice();
           }
-          getIngredient(index:number){
+          getBox(index:number){
             return this.Boxes[index];
           }
         
-          addIngredient(ingredient: Box) {
+          addBox(ingredient: Box) {
             this.Boxes.push(ingredient);
-            this.ingredientsChanged.next(this.Boxes.slice());
+            this.BoxesChanged.next(this.Boxes.slice());
           }
         
           addIngredients(ingredients: Box[]) {
             // for (let ingredient of ingredients) {
-            //   this.addIngredient(ingredient);
+            //   this.addBox(ingredient);
             // }
             this.Boxes.push(...ingredients);
-            this.ingredientsChanged.next(this.Boxes.slice());
+            this.BoxesChanged.next(this.Boxes.slice());
           }
-          updateIngredient(index: number, newIngredient:Box){
-            this.Boxes[index] = newIngredient;
-            this.ingredientsChanged.next(this.Boxes.slice());
+          updateBox(index: number, newBox:Box){
+            this.Boxes[index] = newBox;
+            this.BoxesChanged.next(this.Boxes.slice());
           }
-          deleteIngredient(index: number){
+          deleteBox(index: number){
             this.Boxes.splice(index,1);
-            this.ingredientsChanged.next(this.Boxes.slice());
+            this.BoxesChanged.next(this.Boxes.slice());
           }
 
           getTasks() {
@@ -87,7 +87,7 @@ export class TableService{
             for (let Box of this.Boxes){
               if(Box.board_id==1){
             Box.task.push(tasks);
-            this.ingredientsChangedTask.next(Box.task.slice());
+            this.BoxesChangedTask.next(Box.task.slice());
           }
             }
           }
@@ -97,30 +97,30 @@ export class TableService{
             for (let Box of this.Boxes){
               if(Box.board_id==1){
             Box.task.push(...tasks);
-            this.ingredientsChangedTask.next(Box.task.slice());
+            this.BoxesChangedTask.next(Box.task.slice());
             }
           }
           }
-          updateTask(index: number, newIngredient:BoxTask){
+          updateTask(index: number, newBox:BoxTask){
             for (let Box of this.Boxes){
               for(let temp in Box.task){
                 let value=Box.task[temp]
                 if (value.task_id==index){
-                  Box.task[temp] = newIngredient;
-            this.ingredientsChangedTask.next(Box.task.slice());
+                  Box.task[temp] = newBox;
+            this.BoxesChangedTask.next(Box.task.slice());
             }}}
           }
 
 
-          updateComment(index: number, newIngredient:BoxTask){
+          updateComment(index: number, newBox:BoxTask){
             for (let Box of this.Boxes){
               for(let Task of Box.task){ 
                 for (let comments of Task.comment){
                 if (comments.comment_id==index){ 
                   let a=Box[1].BoxTask[2];
                   let b=a.BoxTaskComment[0];
-                  b=newIngredient;
-                  this.ingredientsChangedComments.next(b.slice());
+                  b=newBox;
+                  this.BoxesChangedComments.next(b.slice());
 break;                }
                 }}}}
            
@@ -128,7 +128,7 @@ break;                }
             for(let task_ of this.Boxes){
             task_.task.forEach( (task, index) => {
             if(task.task_id === tId) task_.task.splice(index,1);
-            this.ingredientsChangedTask.next(task_.task.slice());
+            this.BoxesChangedTask.next(task_.task.slice());
             });
             }
             }
