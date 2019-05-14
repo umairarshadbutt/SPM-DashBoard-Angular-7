@@ -53,10 +53,11 @@ export class TableService{
             }
           }
           getTask(index:number){
+            console.log(index);
             for (let Box of this.Boxes){
               for(let task of Box.task){ 
                 if (task.task_id==index){
-            return task;
+            return task;break;
                 }
           }
             }

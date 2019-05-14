@@ -1,7 +1,6 @@
 import { boards } from './../mock_task';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Board, Task } from '../task';
-import { TaskService } from '../tasks.service';
 import { Box } from '../Box.model';
 import { TableService } from '../services/table.service';
 import { Subscription } from 'rxjs';

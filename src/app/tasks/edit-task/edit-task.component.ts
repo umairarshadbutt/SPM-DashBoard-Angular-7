@@ -26,11 +26,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
-  editedItem:Box;
   editedTask: BoxTask;
-  editedComment: BoxTaskComment;
-  ingredients:BoxTask[] ;
-  ingredient: Box[] ;
 
   constructor(private boxService: TableService,
               private router:Router,
@@ -41,26 +37,8 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index);
-        this.editedComment=this.boxService.getComment(index);
-       
-      }
-    );
-
-    this.ingredient = this.boxService.getIngredients();
-    this.subscription = this.boxService.ingredientsChanged.subscribe(
-        (ingredient: Box[]) => {
-          this.ingredient = ingredient;
-        }
-      );
-    this.subscription= this.boxService.startedEditing.subscribe(
-      (index: number) => {
-        this.editedItemIndex=index;
-        this.editMode = true;
-        this.editedTask=this.boxService.getTask(index);
-        this.editedComment=this.boxService.getComment(index);
-       
+      
         this.slForm.setValue({
-          
           tId: this.editedTask.task_id,
           tTitle: this.editedTask.task_title,
           pIc: this.editedTask.assigned,
@@ -72,7 +50,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[value.cID,value.cComment, value.cAuthor]);
+    const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,newTask);
     } else  {
