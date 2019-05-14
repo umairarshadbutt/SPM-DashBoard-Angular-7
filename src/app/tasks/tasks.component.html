@@ -12,7 +12,7 @@
             [cdkDropListData]="ingredient_.task"
             (cdkDropListDropped)="drop($event)">
             <div class="list-card"  *ngFor="let item of ingredient_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
-              <h5 style="line-height:44px" (click)="onEditItem(item.task_id)">{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
+              <h5 style="line-height:44px" >{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
             
             </div>
             <a class="open-card-composer" *ngIf="ingredient_.name ==='Backlog'"(click)="onNewTask()"> + Add Another Task</a>
@@ -38,7 +38,7 @@
 
         </p>
    </tr>
-   
+   <button class="boardButton" (click)="onEditItem(selectedTask.task_id)">Edit Task</button>
  </table>
    </div>
  </div>         
