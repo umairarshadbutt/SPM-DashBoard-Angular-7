@@ -69,7 +69,9 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
  
-
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
