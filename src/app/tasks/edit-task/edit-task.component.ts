@@ -37,7 +37,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index);
-      
+      console.log(index);
         this.slForm.setValue({
           tId: this.editedTask.task_id,
           tTitle: this.editedTask.task_title,

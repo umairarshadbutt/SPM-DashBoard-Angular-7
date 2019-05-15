@@ -8,11 +8,10 @@
             <div class="list-header" style="cursor: pointer">
               <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
             <div  cdkDropList class="list-cards" 
-            cdkDropList
-            [cdkDropListData]="ingredient_.task"
-            (cdkDropListDropped)="drop($event)">
+            cdkDropList>
             <div class="list-card"  *ngFor="let item of ingredient_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
-              <h5 style="line-height:44px" (click)="onCancel()">{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
+              <h5 style="line-height:44px" 
+              >{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
             
             </div>
             <a class="open-card-composer" *ngIf="ingredient_.name ==='Backlog'"(click)="onNewTask()"> + Add Another Task</a>
@@ -27,19 +26,21 @@
 <button class="boardButton" (click)="onNewBoard()">New Board</button>
 </div>
 <br>
-<router-outlet></router-outlet><br><br>
+
 <div  *ngIf="selectedTask">
-  <div class="dd">
-   <table >
+  <div class="dd ">
+   <div class="col-sm-7 form-group">
      <h4><u>{{selectedTask.task_id}} - {{selectedTask.task_title}} </u><img class="a" [src]="selectedTask.assigned"> </h4> 
-   <tr>
+   
       <p *ngFor="let comment_ of selectedTask.comment ">
           {{comment_.comment_id}} {{comment_.comment}} by {{comment_.comment_auther}}<br>
+      </p>
+    </div>
+    <div class="col-sm-3 form-group">
+   <button class="boardButton" style="    margin-top: 46px;margin-left: 187px;" (click)="onEditItem(selectedTask.task_id)"
+   >Edit Task</button>
+  </div>
 
-        </p>
-   </tr>
-   <button class="boardButton" (click)="onEditItem(selectedTask.task_id)">Edit Task</button>
- </table>
    </div>
  </div>         
 

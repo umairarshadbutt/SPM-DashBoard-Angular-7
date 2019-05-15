@@ -43,14 +43,19 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
   onSelect(task:Box): void{
     this.selectedTask=task;
+    this.router.navigate(['editTask'], {relativeTo: this.route});
+
   }
   // getTasks():void{
   //   this.tasksService.getTask().subscribe(task=> this.task=task);
   // }
 
+
   onEditItem(index:number){
     this.router.navigate(['editTask'], {relativeTo: this.route});
     this.boxService.startedEditing.next(index);
+    console.log(index);
+    
   }
 
   onEditItem1(index:number){
