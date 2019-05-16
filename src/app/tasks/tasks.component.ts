@@ -65,7 +65,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
   onNewTask() {
     this.editMode=true;
-    this.router.navigate(['newTask'], {relativeTo: this.route});
   }
   onNewBoard() {
     this.router.navigate(['newBoard'], {relativeTo: this.route});
