@@ -47,7 +47,6 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       }
     );
   }
-
   onSubmit(form: NgForm) {
     const value= form.value;
     const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
@@ -76,7 +75,4 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
     this.subscription.unsubscribe();
   }
-
-
-
 }

@@ -8,7 +8,8 @@
             <div class="list-header" style="cursor: pointer" >
 
               <h3 style="width:400px" (click)="onEditItem1(i)"><a (click)="onEditItem1(i)">{{ingredient_.name}}</a></h3>
-            <div  cdkDropList class="list-cards" 
+            <div  cdkDropList class="list-cards"  [cdkDropListData]="ingredient_.task"
+            (cdkDropListDropped)="drop($event)"
             cdkDropList>
             <div class="list-card"  *ngFor="let item of ingredient_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
               <h5 style="line-height:44px" 
