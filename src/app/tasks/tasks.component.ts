@@ -19,6 +19,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class TasksComponent implements OnInit, OnDestroy {
   ingredients:BoxTask[] ;
   ingredient: Box[] ;
+  editMode= false;
   private subscription: Subscription;
   //task:Task[];
   selectedTask: Box;
@@ -43,7 +44,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
   onSelect(task:Box): void{
     this.selectedTask=task;
-    this.router.navigate(['editTask'], {relativeTo: this.route});
+    this.editMode = false;
 
   }
   // getTasks():void{
@@ -52,9 +53,9 @@ export class TasksComponent implements OnInit, OnDestroy {
 
 
   onEditItem(index:number){
-    this.router.navigate(['editTask'], {relativeTo: this.route});
+    this.editMode = true;
     this.boxService.startedEditing.next(index);
-    console.log(index);
+    
     
   }
 
@@ -63,6 +64,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.boxService.startedEditing.next(index);
   }
   onNewTask() {
+    this.editMode=true;
     this.router.navigate(['newTask'], {relativeTo: this.route});
   }
   onNewBoard() {

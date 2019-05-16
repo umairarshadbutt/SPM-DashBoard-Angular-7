@@ -5,8 +5,9 @@
       <div class="wrapper" *ngFor="let ingredient_ of ingredient; let i=index">
         <div class="list">
           <div class="target">
-            <div class="list-header" style="cursor: pointer">
-              <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>
+            <div class="list-header" style="cursor: pointer" >
+
+              <h3 style="width:400px" (click)="onEditItem1(i)"><a (click)="onEditItem1(i)">{{ingredient_.name}}</a></h3>
             <div  cdkDropList class="list-cards" 
             cdkDropList>
             <div class="list-card"  *ngFor="let item of ingredient_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
@@ -36,15 +37,16 @@
           {{comment_.comment_id}} {{comment_.comment}} by {{comment_.comment_auther}}<br>
       </p>
     </div>
-    <div class="col-sm-3 form-group">
+    <div class="col-sm-3 form-group" (click)="onEditItem(selectedTask.task_id)">
    <button class="boardButton" style="    margin-top: 46px;margin-left: 187px;" (click)="onEditItem(selectedTask.task_id)"
    >Edit Task</button>
   </div>
 
    </div>
- </div>         
-
-          
+ </div>        
+ <div *ngIf="editMode">
+ <app-edit-task></app-edit-task>
+</div>    
 
 
 

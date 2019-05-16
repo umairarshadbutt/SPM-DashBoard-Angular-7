@@ -70,6 +70,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   }
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
+    
   }
   ngOnDestroy(){
 
