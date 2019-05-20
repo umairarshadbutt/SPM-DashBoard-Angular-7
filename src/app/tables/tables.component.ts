@@ -1,8 +1,8 @@
 import { boards } from './../mock_task';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Board, Task } from '../task';
-import { Box } from '../Box.model';
-import { TableService } from '../services/table.service';
+import { Box } from '../models/Box.model';
+import { TaskService } from '../services/task.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -30,7 +30,7 @@ export class TablesComponent  implements OnInit, OnDestroy{
   // }
   Boxs: Box[] ;
   private subscription: Subscription;
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: TaskService) { }
 
   ngOnInit() {
     this.Boxs = this.tableService.getBoxes();

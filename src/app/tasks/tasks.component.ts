@@ -2,14 +2,12 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
-import { BoxTask } from '../BoxTask.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Box } from '../Box.model';
-import { TableService } from '../services/table.service';
+import { Box } from '../models/Box.model';
+import { TaskService } from '../services/task.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-
-
+import { BoxTask } from '../models/BoxTask.model';
 
 @Component({
   selector: 'app-tasks',
@@ -26,10 +24,8 @@ export class TasksComponent implements OnInit, OnDestroy {
   constructor(
               private router: Router,
               private route:ActivatedRoute,
-              private boxService:TableService) { }
-    
-
-              
+              private boxService:TaskService) 
+              { }
 
   ngOnInit() {
     //this.getTasks();
@@ -55,7 +51,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   onEditItem(index:number){
     this.editMode = true;
     this.boxService.startedEditing.next(index);
-    
     
   }
 

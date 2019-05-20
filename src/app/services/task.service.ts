@@ -1,9 +1,9 @@
 //import { BoxTaskComment } from 'src/app/BoxTaskComment.module';
-import { Box } from '../Box.model';
+import { Box } from '../models/Box.model';
 import { Subject } from 'rxjs/Subject';
-import { BoxTask } from '../BoxTask.model';
-import { BoxTaskComment } from '../BoxTaskComment.module';
-export class TableService{
+import { BoxTask } from 'src/app/models/BoxTask.model';
+import { BoxTaskComment } from '../models/BoxTaskComment.module';
+export class TaskService{
     BoxesChanged = new Subject<Box[]>();
     BoxesChangedTask = new Subject<BoxTask[]>();
     BoxesChangedComments = new Subject<BoxTaskComment[]>();
@@ -30,13 +30,7 @@ export class TableService{
             this.BoxesChanged.next(this.Boxes.slice());
           }
         
-          addIngredients(ingredients: Box[]) {
-            // for (let ingredient of ingredients) {
-            //   this.addBox(ingredient);
-            // }
-            this.Boxes.push(...ingredients);
-            this.BoxesChanged.next(this.Boxes.slice());
-          }
+        
           updateBox(index: number, newBox:Box){
             this.Boxes[index] = newBox;
             this.BoxesChanged.next(this.Boxes.slice());
@@ -56,7 +50,7 @@ export class TableService{
             for (let Box of this.Boxes){
               for(let task of Box.task){ 
                 if (task.task_id==index){
-            return task;break;
+            return task;
                 }
           }
             }
@@ -76,6 +70,7 @@ export class TableService{
                 for (let comments of task.comment){
                 if (task.task_id==index){
             return comments;
+            break;
                 }}
           }
             }
@@ -111,13 +106,13 @@ export class TableService{
           }
 
 
-          updateComment(index: number, newBox:BoxTask){
+          updateComment(index: number, comment:number,newBox:BoxTask){
             for (let Box of this.Boxes){
               for(let Task of Box.task){ 
                 for (let comments of Task.comment){
                 if (comments.comment_id==index){ 
-                  let a=Box[1].BoxTask[2];
-                  let b=a.BoxTaskComment[0];
+                  let a=Box[1].BoxTask[index];
+                  let b=a.BoxTaskComment[comment];
                   b=newBox;
                   this.BoxesChangedComments.next(b.slice());
 break;                }

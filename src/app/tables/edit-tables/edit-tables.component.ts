@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
-import { TableService } from '../../services/table.service';
-import { Box } from 'src/app/Box.model';
+import { TaskService } from '../../services/task.service';
+import { Box } from 'src/app/models/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BoxTask } from 'src/app/BoxTask.model';
+import { BoxTask } from 'src/app/models/BoxTask.model';
 @Component({
   selector: 'app-edit-tables',
   templateUrl: './edit-tables.component.html',
@@ -16,7 +16,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   editMode = false;
   editedItemIndex:number;
   editedItem:Box;
-  constructor(private boxService: TableService,
+  constructor(private boxService: TaskService,
               private router:Router,
               private route:ActivatedRoute) { }
 

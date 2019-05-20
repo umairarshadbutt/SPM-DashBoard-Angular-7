@@ -1,4 +1,4 @@
-import { TableService } from './services/table.service';
+import { TaskService } from './services/task.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +10,7 @@ import {HttpModule} from '@angular/http';
 import { ServerService } from './server.service';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { EditTablesComponent } from './tables/edit-tables/edit-tables.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -29,9 +29,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+    ReactiveFormsModule
   ],
-  providers: [ServerService,TableService],
+  providers: [ServerService,TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,125 @@
 <div class="row">
+  <div class="col-xs-12">
+    <form *ngIf="taskForm" (ngSubmit)= "onSubmit()" [formGroup]="taskForm" >
+     
+          
+      <div class="row">
+      
+       
+       <div class="col-sm-2 form-group">
+          
+          <label for="taskId">ID : </label>
+          <input
+            type="number"
+            id="taskId"
+            class="form-control"
+            formControlName="taskId"
+            required>
+        </div>
+        <div class="col-sm-5 form-group">
+          <label for="taskTitle">Task : </label>
+          <input
+            type="text" id="tTitle"
+            class="form-control"
+            formControlName="taskTitle"
+            required>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="imagePath">Picture URL: </label>
+          <input
+            type="text"
+            id="imagePath"
+            class="form-control"
+            formControlName="imagePath"
+            required>
+        </div>
+        <div formArrayName="taskFormComments">
+            <div
+            class="row"
+            *ngFor="let comments of taskForm.get('taskFormComments').controls; let i = index"
+            [formGroupName]="i"formGroup
+            style="margin-top: 10px;">
+          <div class="col-sm-2 form-group">
+              <label for="commentId">Comment ID: </label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="commentId"
+                required>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="comment">Comment: </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="comment"
+                  required>
+              </div>
+              <div class="col-sm-2 form-group">
+                  <label for="commentAuther">Comment Author: </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="commentAuther"
+                    required>
+                </div></div></div>
+        
+        <!-- <div class="col-sm-2 form-group">
+            <label for="commentId">Comment ID: </label>
+            <input
+              type="text"
+              id="commentId"
+              name="commentId"
+              class="form-control"
+              formControlName="commentId"
+              required>
+          </div>
+          <div class="col-sm-2 form-group">
+              <label for="comment">Comment: </label>
+              <input
+                type="text"
+                id="comment"
+                name="comment"
+                class="form-control"
+                formControlName="comment"
+                required>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="commentAuther">Comment Author: </label>
+                <input
+                  type="text"
+                  id="commentAuther"
+                  name="commentAuther"
+                  class="form-control"
+                  formControlName="commentAuther"
+                  required>
+              </div> -->
+        <div class="col-sm-1 form-group">
+            <button type="button" style="margin:31px" class="btn btn-danger"  onClick="location.href=location.href">X</button>
+       </div>
+<br>
+      
+      </div>
+      
+    
+      <div class="row">
+        <div class="col-xs-12">
+          <button 
+          class="btn btn-success" 
+          type="submit" 
+          [disabled] = "!taskForm.valid" style="    margin-right: 14px;">{{editMode ? 'Update' : 'Add'}}</button>
+          <button class="btn btn-danger" type="button" (click)="onDelete()"
+          *ngIf="editMode">Delete</button>
+
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+
+
+<!-- Reactive approach -->
+<!-- <div class="row">
     <div class="col-xs-12">
       <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
        
@@ -59,4 +180,4 @@
       </div>
   </div>
   
-  
+   -->

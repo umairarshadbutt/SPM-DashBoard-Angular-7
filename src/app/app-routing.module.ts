@@ -9,11 +9,7 @@ import { TasksComponent } from './tasks/tasks.component';
 const routes: Routes = [
   
   {path: 'newTask', component: EditTaskComponent},
-  {path: 'editTask', component: EditTaskComponent , children: [
-    { path: '', component: EditTaskComponent },
-    { path: ':id', component: TasksComponent },
-    { path: ':id/edit', component: EditTaskComponent },
-  ] },
+  {path: 'editTask', component: EditTaskComponent  },
   {path: 'newBoard', component: EditTablesComponent},
   {path: 'editBoard', component: EditTablesComponent},
   { path: 'board' , component: TaskDetailComponent},
