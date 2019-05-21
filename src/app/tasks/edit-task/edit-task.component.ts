@@ -22,7 +22,8 @@ import { BoxTask } from 'src/app/models/BoxTask.model';
 
 
 export class EditTaskComponent implements OnInit, OnDestroy{
-
+  ingredient: Box[] ;
+  ingredients:BoxTask[] ;
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
@@ -32,13 +33,19 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
   index:number;
   taskForm: FormGroup;
-
   editedTaskComment:number;
 
   constructor(private boxService: TaskService,
               private router:Router,
               private route:ActivatedRoute) { }
   ngOnInit() {
+
+    this.ingredient = this.boxService.getBoxes();
+    this.subscription = this.boxService.BoxesChanged.subscribe(
+        (ingredient: Box[]) => {
+          this.ingredient = ingredient;
+        }
+      );
     this.subscription= this.boxService.startedEditing.subscribe(
       (index1: number) => {
         this.editedItemIndex=index1;
@@ -60,9 +67,9 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     let taskTitle='';
     let imageUrl='';
     let comments=new FormArray([]);
-    // let commentId=1;
-    // let commentTitle='';
-    // let comment_auther='';
+    let commentId=1;
+    let commentTitle='';
+    let comment_auther='';
     if(this.editMode){
       const task=this.boxService.getTask(this.index);
       taskId=task.task_id;
@@ -70,36 +77,37 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       imageUrl=task.assigned;
       if (task['comment'])
       {
-        for (let comment_ of task.comment)
+        for (let comment_ of task.comment )
         {
           comments.push(
             new FormGroup({
-              'commentId': new FormControl(comment_.comment_id, [
-                Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)
-              ]),
+              'commentId': new FormControl(comment_.comment_id, Validators.required),
               'commentTitle': new FormControl(comment_.comment,Validators.required),
               'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
             })
           );
+          
         }
       }
       
-      
-      //const comment_=this.boxService.getComment(this.index);
-      // commentId=comment_.comment_id;
-      // commentTitle=comment_.comment;
-      // comment_auther=comment_.comment_auther;
+      for (let comment_ of task.comment)
+      {
+      commentId=comment_.comment_id;
+      commentTitle=comment_.comment;
+      comment_auther=comment_.comment_auther;
+      console.log(comment_);
+        }
+        
     }
 
     this.taskForm= new FormGroup({
       'taskId':  new FormControl(taskId),
       'taskTitle': new FormControl(taskTitle),
       'imagePath':new FormControl(imageUrl),
-      'comment': new FormControl(comments)
-      // 'commentId': new FormControl(commentId),
-      // 'comment':new FormControl(commentTitle),
-      // 'commentAuther': new FormControl(comment_auther)
+      'comment': new FormControl(comments),
+      'commentId': new FormControl(commentId),
+      'commentT':new FormControl(commentTitle),
+      'commentAuther': new FormControl(comment_auther)
 
     });
   }

@@ -1,19 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
-    <form *ngIf="taskForm" [formGroup]="taskForm" (ngSubmit)= "onSubmit()"  >
+    <form *ngIf="taskForm" [formGroup]="taskForm" (ngSubmit)= "onSubmit()"  > 
       <div class="row">
-        <div class="col-xs-12">
-          <button
-            type="submit"
-            class="btn btn-success"
-            [disabled]="!taskForm.valid">Save</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-        </div>
-      </div>
-          
-      <div class="row">
-      
-       
        <div class="col-sm-2 ">
           <div class="form-group">
           <label for="taskId">ID : </label>
@@ -46,56 +34,69 @@
             required>
         </div>
         </div>
-        <div class="col-xs-12"formArrayName="comment">
-            <div
-            class="row"
-            *ngFor="let comments of taskForm.get('comment').controls; let i = index"
-            [formGroupName]="i"
-            style="margin-top: 10px;">
-          <div class="col-sm-2 form-group">
-              <label for="commentId">Comment ID: </label>
-              <input
-                type="text"
-                class="form-control"
-                id="commentId"
-                formControlName="commentId"
-                required>
-            </div>
-            <div class="col-sm-2 form-group">
-                <label for="comment">Comment: </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="comment"
-                  required>
-              </div>
-              <div class="col-sm-2 form-group">
-                  <label for="commentAuther">Comment Author: </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="commentAuther"
-                    required>
-                </div></div></div>
-        
+        <div *ngFor="let task_ of ingredient; let i=index">
+            <div *ngFor="let item of task_.task let i=index">
+                <div *ngIf="item.task_id === editedItemIndex">
+                <div *ngFor="let comment_ of item.comment ">
+                  <div class="row">
+                      <div class="col-sm-2 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment_id}}"
+                          class="form-control"
+                          required>
+                      </div>
+                      </div>
+
+                      <div class="col-sm-7 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment}}"
+                          class="form-control"
+                          required>
+                      </div>
+                      </div>
+
+
+                      <div class="col-sm-2 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment_auther}}"
+                          class="form-control"
+                          required>
+                      </div>
+                      </div>
+                  
+                      </div>
+                      <br>
+                  </div>
+                </div>
+    </div>
+</div>
+
+        <!-- single comment fetch from server -->
         <!-- <div class="col-sm-2 form-group">
             <label for="commentId">Comment ID: </label>
             <input
-              type="text"
+              type="number"
               id="commentId"
               name="commentId"
               class="form-control"
+              value="commentId"
               formControlName="commentId"
               required>
           </div>
           <div class="col-sm-2 form-group">
-              <label for="comment">Comment: </label>
+              <label for="commentT">Comment: </label>
               <input
                 type="text"
-                id="comment"
-                name="comment"
+                id="commentT"
+                name="commentT"
                 class="form-control"
-                formControlName="comment"
+                formControlName="commentT"
                 required>
             </div>
             <div class="col-sm-2 form-group">
@@ -108,14 +109,44 @@
                   formControlName="commentAuther"
                   required>
               </div> -->
-        <div class="col-sm-1 form-group">
-            <button type="button" style="margin:31px" class="btn btn-danger"  onClick="location.href=location.href">X</button>
-       </div>
+              <div class="col-sm-1 form-group">
+                  <button type="button" style="margin:31px" class="btn btn-danger"  onClick="location.href=location.href">Close</button>
+             </div>
 <br>
       
       </div>
       
-    
+      <!-- <div class="col-xs-12"formArrayName="comment" >
+          <div
+          class="row"
+          *ngFor="let comments of taskForm.get('comment').controls; let i = index"
+          [formGroupName]="i" formGroup
+          style="margin-top: 10px;">
+          <div class=" col-xs-2">
+              <label for="commentId">Comment ID: </label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="commentId">
+            </div>
+            <div class="col-xs-2">
+                <label for="commentTitle">Comment: </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="commentTitle">
+              </div>
+              <div class="col-xs-2">
+                  <label for="comment_auther">Comment Author: </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="comment_auther"
+                    required>
+              </div></div></div> -->
+
+
+              
       <div class="row">
         <div class="col-xs-12">
           <button 
