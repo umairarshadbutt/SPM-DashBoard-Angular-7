@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-xs-12">
-    <form *ngIf="taskForm" (ngSubmit)= "onSubmit()" [formGroup]="taskForm" >
-     
+    <form *ngIf="taskForm" [formGroup]="taskForm" (ngSubmit)= "onSubmit()"  >
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!taskForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
           
       <div class="row">
       
        
-       <div class="col-sm-2 form-group">
-          
+       <div class="col-sm-2 ">
+          <div class="form-group">
           <label for="taskId">ID : </label>
           <input
             type="number"
@@ -16,7 +24,9 @@
             formControlName="taskId"
             required>
         </div>
-        <div class="col-sm-5 form-group">
+      </div>
+        <div class="col-sm-5 ">
+            <div class="form-group">
           <label for="taskTitle">Task : </label>
           <input
             type="text" id="tTitle"
@@ -24,7 +34,9 @@
             formControlName="taskTitle"
             required>
         </div>
-        <div class="col-sm-2 form-group">
+        </div>
+        <div class="col-sm-2 ">
+            <div class="form-group">
           <label for="imagePath">Picture URL: </label>
           <input
             type="text"
@@ -33,17 +45,19 @@
             formControlName="imagePath"
             required>
         </div>
-        <div formArrayName="taskFormComments">
+        </div>
+        <div class="col-xs-12"formArrayName="comment">
             <div
             class="row"
-            *ngFor="let comments of taskForm.get('taskFormComments').controls; let i = index"
-            [formGroupName]="i"formGroup
+            *ngFor="let comments of taskForm.get('comment').controls; let i = index"
+            [formGroupName]="i"
             style="margin-top: 10px;">
           <div class="col-sm-2 form-group">
               <label for="commentId">Comment ID: </label>
               <input
                 type="text"
                 class="form-control"
+                id="commentId"
                 formControlName="commentId"
                 required>
             </div>

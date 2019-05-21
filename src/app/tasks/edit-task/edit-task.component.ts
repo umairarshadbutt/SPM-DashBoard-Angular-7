@@ -22,7 +22,7 @@ import { BoxTask } from 'src/app/models/BoxTask.model';
 
 
 export class EditTaskComponent implements OnInit, OnDestroy{
-  @ViewChild('f') teForm:NgForm;
+
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
@@ -52,25 +52,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     );
 
 
-    this.subscription= this.boxService.startedEditing.subscribe(
-      (index: number) => {
-        this.editedItemIndex=index;
-        this.editMode = true;
-        this.editedTask=this.boxService.getTask(index);
-        this.editedComment=this.boxService.getComment(index);
-       
-        // this.teForm.setValue({
-          
-        //   tId: this.editedTask.task_id,
-        //   tTitle: this.editedTask.task_title,
-        //   pIc: this.editedTask.assigned,
-        //   cId: this.editedComment.comment_id,
-        //   cComment:this.editedComment.comment,
-        //   cAuthor: this.editedComment.comment_auther,
-        //   editedTaskComment:this.editedComment.comment_id,
-        //  })
-      }
-    );
+    
   }
 
   private initForm(){
@@ -86,7 +68,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       taskId=task.task_id;
       taskTitle=task.task_title;
       imageUrl=task.assigned;
-      if (task['taskFormComments'])
+      if (task['comment'])
       {
         for (let comment_ of task.comment)
         {
@@ -114,7 +96,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       'taskId':  new FormControl(taskId),
       'taskTitle': new FormControl(taskTitle),
       'imagePath':new FormControl(imageUrl),
-      'taskFormComments': new FormControl(comments)
+      'comment': new FormControl(comments)
       // 'commentId': new FormControl(commentId),
       // 'comment':new FormControl(commentTitle),
       // 'commentAuther': new FormControl(comment_auther)
@@ -122,7 +104,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     });
   }
   onSubmit() {
-    
+    console.log(this.taskForm);
     //const value= form.value;
     //const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
     if (this.editMode){
@@ -148,7 +130,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.subscription.unsubscribe();
   }
   getControls() {
-    return (<FormArray>this.taskForm.get('taskFormComments')).controls;
+    return (<FormArray>this.taskForm.get('comment')).controls;
   }
 
 
