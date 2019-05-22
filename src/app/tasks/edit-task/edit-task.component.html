@@ -1,56 +1,231 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
-     
-          
+    <form *ngIf="taskForm" [formGroup]="taskForm" (ngSubmit)= "onSubmit()"  > 
       <div class="row">
-        <div class="col-sm-2 form-group">
-          <label for="tId">ID : </label>
+       <div class="col-sm-2 ">
+          <div class="form-group">
+          <label for="taskId">ID : </label>
           <input
             type="number"
-            id="tId"
+            id="taskId"
             class="form-control"
-            name="tId"
-            ngModel
+            formControlName="taskId"
             required>
         </div>
-        <div class="col-sm-6 form-group">
-          <label for="task">Task : </label>
+      </div>
+        <div class="col-sm-5 ">
+            <div class="form-group">
+          <label for="taskTitle">Task : </label>
+          <input
+            type="text" id="tTitle"
+            class="form-control"
+            formControlName="taskTitle"
+            required>
+        </div>
+        </div>
+        <div class="col-sm-2 ">
+            <div class="form-group">
+          <label for="imagePath">Picture URL: </label>
           <input
             type="text"
-            id="task" name="tTitle"
+            id="imagePath"
             class="form-control"
-            ngModel
+            formControlName="imagePath"
             required>
         </div>
-        <div class="col-sm-3 form-group">
-          <label for="pic">Picture URL: </label>
-          <input
-            type="text"
-            id="pic"
-            name="pIc"
-            class="form-control"
-            ngModel
-            required>
         </div>
-        <div class="col-sm-1 form-group">
-        <button type="button" style="margin:31px" class="btn btn-danger" (click)="onCancel()">X</button>
-       </div>
+        <div *ngFor="let task_ of ingredient; let i=index">
+            <div *ngFor="let item of task_.task let i=index">
+                <div *ngIf="item.task_id === editedItemIndex">
+                <div *ngFor="let comment_ of item.comment ">
+                  <div class="row">
+                      <div class="col-sm-2 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment_id}}"
+                          class="form-control"
+                          formControlName="commentId"
+                          required>
+                      </div>
+                      </div>
+
+                      <div class="col-sm-7 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment}}"
+                          class="form-control"
+                          formControlName="commentT"
+                          required>
+                      </div>
+                      </div>
+
+
+                      <div class="col-sm-2 ">
+                          <div class="form-group">
+                        <label >Commetn ID:</label>
+                        <input
+                          type="text" value="{{comment_.comment_auther}}"
+                          class="form-control"
+                          formControlName="commentAuther"
+                          required>
+                      </div>
+                      </div>
+                  
+                      </div>
+                      <br>
+                  </div>
+                </div>
+    </div>
+</div>
+
+        <!-- single comment fetch from server -->
+        <!-- <div class="col-sm-2 form-group">
+            <label for="commentId">Comment ID: </label>
+            <input
+              type="number"
+              id="commentId"
+              name="commentId"
+              class="form-control"
+              value="commentId"
+              formControlName="commentId"
+              required>
+          </div>
+          <div class="col-sm-2 form-group">
+              <label for="commentT">Comment: </label>
+              <input
+                type="text"
+                id="commentT"
+                name="commentT"
+                class="form-control"
+                formControlName="commentT"
+                required>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="commentAuther">Comment Author: </label>
+                <input
+                  type="text"
+                  id="commentAuther"
+                  name="commentAuther"
+                  class="form-control"
+                  formControlName="commentAuther"
+                  required>
+              </div> -->
+              <div class="col-sm-1 form-group">
+                  <button type="button" style="margin:31px" class="btn btn-danger"  onClick="location.href=location.href">Close</button>
+             </div>
+<br>
+      
       </div>
       
-    
+      <!-- <div class="col-xs-12"formArrayName="comment" >
+          <div
+          class="row"
+          *ngFor="let comments of taskForm.get('comment').controls; let i = index"
+          [formGroupName]="i" formGroup
+          style="margin-top: 10px;">
+          <div class=" col-xs-2">
+              <label for="commentId">Comment ID: </label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="commentId">
+            </div>
+            <div class="col-xs-2">
+                <label for="commentTitle">Comment: </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="commentTitle">
+              </div>
+              <div class="col-xs-2">
+                  <label for="comment_auther">Comment Author: </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="comment_auther"
+                    required>
+              </div></div></div> -->
+
+
+              
       <div class="row">
         <div class="col-xs-12">
           <button 
           class="btn btn-success" 
           type="submit" 
-          [disabled] = "!f.valid">{{editMode ? 'Update' : 'Add'}}</button>
+          [disabled] = "!taskForm.valid" style="    margin-right: 14px;">{{editMode ? 'Update' : 'Add'}}</button>
           <button class="btn btn-danger" type="button" (click)="onDelete()"
           *ngIf="editMode">Delete</button>
-          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
 
         </div>
       </div>
     </form>
     </div>
 </div>
+
+
+<!-- Reactive approach -->
+<!-- <div class="row">
+    <div class="col-xs-12">
+      <form (ngSubmit)= "onSubmit(f)" #f="ngForm" class="addTask">
+       
+            
+        <div class="row">
+          <div class="col-sm-2 form-group">
+            <label for="tId">ID : </label>
+            <input
+              type="number"
+              id="tId"
+              class="form-control"
+              name="tId"
+              ngModel
+              required
+              placeholder="Task ID">
+          </div>
+          <div class="col-sm-5 form-group">
+            <label for="task">Task : </label>
+            <input
+              type="text"
+              id="task" name="tTitle"
+              class="form-control"
+              ngModel
+              required
+              placeholder="Task Name">
+          </div>
+          <div class="col-sm-2 form-group">
+            <label for="pic">Picture URL: </label>
+            <input
+              type="text"
+              id="pic"
+              name="pIc"
+              class="form-control"
+              ngModel
+              required
+              placeholder="Image URL">
+          </div>
+          <div class="col-sm-1 form-group">
+          <button type="button" style="margin:31px" class="btn btn-danger"  onClick="location.href=location.href">X</button>
+         </div>
+  <br>
+        
+        </div>
+        
+      
+        <div class="row">
+          <div class="col-xs-12">
+            <button 
+            class="btn btn-success" 
+            type="submit" 
+            [disabled] = "!f.valid" style="    margin-right: 14px;">{{editMode ? 'Update' : 'Add'}}</button>
+            <button class="btn btn-danger" type="button" (click)="onDelete()"
+            *ngIf="editMode">Delete</button>
+  
+          </div>
+        </div>
+      </form>
+      </div>
+  </div>
+  
+   -->

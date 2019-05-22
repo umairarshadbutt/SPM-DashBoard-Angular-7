@@ -1,15 +1,13 @@
+//import { Box } from 'src/app/Box.model';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
-import { IngredientTask } from '../Task.model';
 import { Subscription } from 'rxjs/Subscription';
-import { TaskService } from '../services/tasks.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Ingredient } from '../Box.model';
-import { TableService } from '../services/table.service';
+import { Box } from '../models/Box.model';
+import { TaskService } from '../services/task.service';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-
-
+import { BoxTask } from '../models/BoxTask.model';
 
 @Component({
   selector: 'app-tasks',
@@ -17,64 +15,52 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit, OnDestroy {
-  ingredients:IngredientTask[] ;
-  ingredient: Ingredient[] ;
+  ingredients:BoxTask[] ;
+  ingredient: Box[] ;
+  editMode= false;
   private subscription: Subscription;
   //task:Task[];
-  selectedTask: Task;
-  constructor(private tasksService:TaskService,
+  selectedTask: Box;
+  constructor(
               private router: Router,
               private route:ActivatedRoute,
-              private slService:TableService) { }
-    
-
-               IngredientTask=[
-                new IngredientTask(1, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(2, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(3, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-                new IngredientTask(4, 'Create a Kanaban Board tool','https://image.shutterstock.com/image-photo/white-marble-head-young-woman-450w-1235805859.jpg'),
-              ];
-
-              IngredientTask1=[];
-
-              
+              private boxService:TaskService) 
+              { }
 
   ngOnInit() {
     //this.getTasks();
-    this.ingredients = this.tasksService.getIngredients();
-    this.subscription = this.tasksService.IngredientChanged
-      .subscribe(
-        (ingredients: IngredientTask[]) => {
-          this.ingredients = ingredients;
-        }
-      );
+    
 
-      this.ingredient = this.slService.getIngredients();
-    this.subscription = this.slService.ingredientsChanged.subscribe(
-        (ingredient: Ingredient[]) => {
+      this.ingredient = this.boxService.getBoxes();
+    this.subscription = this.boxService.BoxesChanged.subscribe(
+        (ingredient: Box[]) => {
           this.ingredient = ingredient;
         }
       );
   }
-  onSelect(task:Task): void{
+  onSelect(task:Box): void{
     this.selectedTask=task;
+    this.editMode = false;
+    console.log(this.selectedTask);
+
   }
   // getTasks():void{
   //   this.tasksService.getTask().subscribe(task=> this.task=task);
   // }
 
-  onEditItem(index:number){
-    this.router.navigate(['editTask'], {relativeTo: this.route});
-    this.tasksService.startedEditing.next(index);
 
+  onEditItem(index:number){
+    this.editMode = true;
+    this.boxService.startedEditing.next(index);
+    
   }
 
   onEditItem1(index:number){
     this.router.navigate(['editBoard'], {relativeTo: this.route});
-    this.slService.startedEditing.next(index);
+    this.boxService.startedEditing.next(index);
   }
   onNewTask() {
-    this.router.navigate(['newTask'], {relativeTo: this.route});
+    this.editMode=true;
   }
   onNewBoard() {
     this.router.navigate(['newBoard'], {relativeTo: this.route});
@@ -83,7 +69,9 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
  
-
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

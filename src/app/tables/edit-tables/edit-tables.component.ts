@@ -1,11 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
-import { TableService } from '../../services/table.service';
-import { Ingredient } from 'src/app/Box.model';
+import { TaskService } from '../../services/task.service';
+import { Box } from 'src/app/models/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IngredientTask } from 'src/app/Task.model';
-
+import { BoxTask } from 'src/app/models/BoxTask.model';
 @Component({
   selector: 'app-edit-tables',
   templateUrl: './edit-tables.component.html',
@@ -16,18 +15,18 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   subscription: Subscription;
   editMode = false;
   editedItemIndex:number;
-  editedItem:Ingredient;
-  constructor(private taskService: TableService,
+  editedItem:Box;
+  constructor(private boxService: TaskService,
               private router:Router,
               private route:ActivatedRoute) { }
 
   
   ngOnInit() {
-    this.subscription= this.taskService.startedEditing.subscribe(
+    this.subscription= this.boxService.startedEditing.subscribe(
       (index: number) => {
         this.editedItemIndex=index;
         this.editMode = true;
-        this.editedItem=this.taskService.getIngredient(index);
+        this.editedItem=this.boxService.getBox(index);
 
         this.slForm.setValue({
           name: this.editedItem.name,
@@ -37,14 +36,13 @@ export class EditTablesComponent implements OnInit,OnDestroy {
       }
     );
   }
-
   onSubmit(form: NgForm) {
     const value= form.value;
-    const newIngredient = new Ingredient(value.boardID ,value.name, []);
+    const newBox = new Box(value.boardID ,value.name, []);
     if (this.editMode){
-      this.taskService.updateIngredient(this.editedItemIndex,newIngredient);
+      this.boxService.updateBox(this.editedItemIndex,newBox);
     } else {
-      this.taskService.addIngredient(newIngredient);
+      this.boxService.addBox(newBox);
     }   
     this.editMode=false;
     form.reset();
@@ -55,7 +53,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
     this.editMode=false;
   }
   onDelete(){
-    this.taskService.deleteIngredient(this.editedItemIndex);
+    this.boxService.deleteBox(this.editedItemIndex);
     this.onClear();
   }
   onCancel() {

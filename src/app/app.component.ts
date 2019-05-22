@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   contentGeneral: any;
   title = 'Task Board';
-
+  constructor(
+    private router:Router,
+    private route:ActivatedRoute) { }
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
+    
+  }
   ngOnInit(){
     
   }

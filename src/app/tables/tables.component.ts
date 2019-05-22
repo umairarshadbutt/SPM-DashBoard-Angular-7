@@ -1,9 +1,8 @@
 import { boards } from './../mock_task';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Board, Task } from '../task';
-import { TaskService } from '../tasks.service';
-import { Ingredient } from '../Box.model';
-import { TableService } from '../services/table.service';
+import { Box } from '../models/Box.model';
+import { TaskService } from '../services/task.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -29,16 +28,16 @@ export class TablesComponent  implements OnInit, OnDestroy{
   // getBoards():void{
   //   this.tasksService.getTask().subscribe(task=> this.board_=boards);
   // }
-  ingredients: Ingredient[] ;
+  Boxs: Box[] ;
   private subscription: Subscription;
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: TaskService) { }
 
   ngOnInit() {
-    this.ingredients = this.tableService.getIngredients();
-    this.subscription = this.tableService.ingredientsChanged
+    this.Boxs = this.tableService.getBoxes();
+    this.subscription = this.tableService.BoxesChanged
       .subscribe(
-        (ingredients: Ingredient[]) => {
-          this.ingredients = ingredients;
+        (ingredients: Box[]) => {
+          this.Boxs = ingredients;
         }
       );
   }
