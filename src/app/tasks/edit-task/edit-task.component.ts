@@ -114,16 +114,15 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     
     const value= this.taskForm.value;
     const task=this.boxService.getTask(this.index);
-    for (let comment_ of task.comment)
-      {
-    const newTask = new BoxTask(value.taskId,value.taskTitle,value.imagePath,[comment_,comment_]);
+    
+    const newTask = new BoxTask(value.taskId,value.taskTitle,value.imagePath,task.comment);
       console.log(newTask);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,newTask);
     } else  {
       this.boxService.addTask(this.taskForm.value);
     }  
-    this.onCancel();}
+    this.onCancel();
   }
   onClear()
   {
