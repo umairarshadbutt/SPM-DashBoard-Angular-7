@@ -75,20 +75,20 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       taskId=task.task_id;
       taskTitle=task.task_title;
       imageUrl=task.assigned;
-      if (task['comment'])
-      {
-        for (let comment_ of task.comment )
-        {
-          comments.push(
-            new FormGroup({
-              'commentId': new FormControl(comment_.comment_id, Validators.required),
-              'commentTitle': new FormControl(comment_.comment,Validators.required),
-              'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
-            })
-          );
+      // if (task['comment'])
+      // {
+      //   for (let comment_ of task.comment )
+      //   {
+      //     comments.push(
+      //       new FormGroup({
+      //         'commentId': new FormControl(comment_.comment_id, Validators.required),
+      //         'commentTitle': new FormControl(comment_.comment,Validators.required),
+      //         'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
+      //       })
+      //     );
           
-        }
-      }
+      //   }
+      // }
       
       for (let comment_ of task.comment)
       {
