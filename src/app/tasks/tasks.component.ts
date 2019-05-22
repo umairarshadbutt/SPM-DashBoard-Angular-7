@@ -41,6 +41,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   onSelect(task:Box): void{
     this.selectedTask=task;
     this.editMode = false;
+    console.log(this.selectedTask);
 
   }
   // getTasks():void{

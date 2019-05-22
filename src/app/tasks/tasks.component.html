@@ -33,10 +33,11 @@
   <div class="dd ">
    <div class="col-sm-7 form-group">
      <h4><u>{{selectedTask.task_id}} - {{selectedTask.task_title}} </u><img class="a" [src]="selectedTask.assigned"> </h4> 
-   
-      <p *ngFor="let comment_ of selectedTask.comment ">
-          {{comment_.comment_id}} {{comment_.comment}} by {{comment_.comment_auther}}<br>
+   <div *ngFor="let comment_ of selectedTask.comment ">
+      <p >
+          {{comment_.comment_id}} </p><p>{{comment_.comment}}</p><p> by {{comment_.comment_auther}}<br>
       </p>
+    </div>
     </div>
     <div class="col-sm-3 form-group" (click)="onEditItem(selectedTask.task_id)">
    <button class="boardButton" style="    margin-top: 46px;margin-left: 187px;" (click)="onEditItem(selectedTask.task_id)"

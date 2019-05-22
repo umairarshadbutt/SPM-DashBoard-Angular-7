@@ -34,7 +34,7 @@
             required>
         </div>
         </div>
-        <div *ngFor="let task_ of boards; let i=index">
+        <div *ngFor="let task_ of ingredient; let i=index">
             <div *ngFor="let item of task_.task let i=index">
                 <div *ngIf="item.task_id === editedItemIndex">
                 <div *ngFor="let comment_ of item.comment ">
@@ -43,38 +43,32 @@
                           <div class="form-group">
                         <label >Commetn ID:</label>
                         <input
-                          type="text" 
-                          id="commentId"
+                          type="text" value="{{comment_.comment_id}}"
                           class="form-control"
                           formControlName="commentId"
-                          class="form-control"
                           required>
                       </div>
                       </div>
 
                       <div class="col-sm-7 ">
                           <div class="form-group">
-                        <label >Commet :</label>
+                        <label >Commetn ID:</label>
                         <input
-                          type="text" 
-                          id="commentT"
+                          type="text" value="{{comment_.comment}}"
                           class="form-control"
                           formControlName="commentT"
-                          class="form-control"
                           required>
                       </div>
                       </div>
 
 
-                      <div class="col-sm-3 ">
+                      <div class="col-sm-2 ">
                           <div class="form-group">
-                        <label >Commetn Author:</label>
+                        <label >Commetn ID:</label>
                         <input
-                          type="text" 
-                          id="commentAuther"
+                          type="text" value="{{comment_.comment_auther}}"
                           class="form-control"
                           formControlName="commentAuther"
-                          class="form-control"
                           required>
                       </div>
                       </div>
