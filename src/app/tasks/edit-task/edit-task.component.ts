@@ -22,7 +22,7 @@ import { BoxTask } from 'src/app/models/BoxTask.model';
 
 
 export class EditTaskComponent implements OnInit, OnDestroy{
-  ingredient: Box[] ;
+  boards: Box[] ;
   ingredients:BoxTask[] ;
   subscription: Subscription;
   editMode = false;
@@ -40,10 +40,10 @@ export class EditTaskComponent implements OnInit, OnDestroy{
               private route:ActivatedRoute) { }
   ngOnInit() {
 
-    this.ingredient = this.boxService.getBoxes();
+    this.boards = this.boxService.getBoxes();
     this.subscription = this.boxService.BoxesChanged.subscribe(
-        (ingredient: Box[]) => {
-          this.ingredient = ingredient;
+        (boards: Box[]) => {
+          this.boards = boards;
         }
       );
     this.subscription= this.boxService.startedEditing.subscribe(
@@ -75,20 +75,20 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       taskId=task.task_id;
       taskTitle=task.task_title;
       imageUrl=task.assigned;
-      if (task['comment'])
-      {
-        for (let comment_ of task.comment )
-        {
-          comments.push(
-            new FormGroup({
-              'commentId': new FormControl(comment_.comment_id, Validators.required),
-              'commentTitle': new FormControl(comment_.comment,Validators.required),
-              'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
-            })
-          );
+      // if (task['comment'])
+      // {
+      //   for (let comment_ of task.comment )
+      //   {
+      //     comments.push(
+      //       new FormGroup({
+      //         'commentId': new FormControl(comment_.comment_id, Validators.required),
+      //         'commentTitle': new FormControl(comment_.comment,Validators.required),
+      //         'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
+      //       })
+      //     );
           
-        }
-      }
+      //   }
+      // }
       
       for (let comment_ of task.comment)
       {
@@ -104,7 +104,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       'taskId':  new FormControl(taskId),
       'taskTitle': new FormControl(taskTitle),
       'imagePath':new FormControl(imageUrl),
-      'comment': new FormControl(comments),
+       'comment': new FormControl(comments),
       'commentId': new FormControl(commentId),
       'commentT':new FormControl(commentTitle),
       'commentAuther': new FormControl(comment_auther)

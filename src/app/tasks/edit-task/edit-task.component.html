@@ -34,7 +34,7 @@
             required>
         </div>
         </div>
-        <div *ngFor="let task_ of ingredient; let i=index">
+        <div *ngFor="let task_ of boards; let i=index">
             <div *ngFor="let item of task_.task let i=index">
                 <div *ngIf="item.task_id === editedItemIndex">
                 <div *ngFor="let comment_ of item.comment ">
@@ -43,7 +43,10 @@
                           <div class="form-group">
                         <label >Commetn ID:</label>
                         <input
-                          type="text" value="{{comment_.comment_id}}"
+                          type="text" 
+                          id="commentId"
+                          class="form-control"
+                          formControlName="commentId"
                           class="form-control"
                           required>
                       </div>
@@ -51,9 +54,12 @@
 
                       <div class="col-sm-7 ">
                           <div class="form-group">
-                        <label >Commetn :</label>
+                        <label >Commet :</label>
                         <input
-                          type="text" value="{{comment_.comment}}"
+                          type="text" 
+                          id="commentT"
+                          class="form-control"
+                          formControlName="commentT"
                           class="form-control"
                           required>
                       </div>
@@ -64,7 +70,10 @@
                           <div class="form-group">
                         <label >Commetn Author:</label>
                         <input
-                          type="text" value="{{comment_.comment_auther}}"
+                          type="text" 
+                          id="commentAuther"
+                          class="form-control"
+                          formControlName="commentAuther"
                           class="form-control"
                           required>
                       </div>
