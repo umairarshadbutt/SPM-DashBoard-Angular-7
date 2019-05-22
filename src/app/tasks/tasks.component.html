@@ -35,7 +35,7 @@
      <h4><u>{{selectedTask.task_id}} - {{selectedTask.task_title}} </u><img class="a" [src]="selectedTask.assigned"> </h4> 
    <div *ngFor="let comment_ of selectedTask.comment ">
       <p >
-          {{comment_.comment_id}} </p><p>{{comment_.comment}}</p><p> by {{comment_.comment_auther}}<br>
+          {{comment_.comment_id}} {{comment_.comment}} by {{comment_.comment_auther}}<br>
       </p>
     </div>
     </div>

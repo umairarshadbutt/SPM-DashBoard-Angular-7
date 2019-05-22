@@ -2,6 +2,8 @@
 import {
   Component,
   OnInit,
+  ElementRef,
+  ViewChild,
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -64,7 +66,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     let taskId=1;
     let taskTitle='';
     let imageUrl='';
-    //let comments=new FormArray([]);
+    let comments=new FormArray([]);
     let commentId=1;
     let commentTitle='';
     let comment_auther='';
@@ -73,19 +75,20 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       taskId=task.task_id;
       taskTitle=task.task_title;
       imageUrl=task.assigned;
-      // if (task['comment'])
-      // {
-      //   for (let comment_ of task.comment )
-      //   {
-      //     comments.push(
-      //       new FormGroup({
-      //         'commentId': new FormControl(comment_.comment_id, Validators.required),
-      //         'commentTitle': new FormControl(comment_.comment,Validators.required),
-      //         'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
-      //       })
-      //     );
-      //   }
-      // }
+      if (task['comment'])
+      {
+        for (let comment_ of task.comment )
+        {
+          comments.push(
+            new FormGroup({
+              'commentId': new FormControl(comment_.comment_id, Validators.required),
+              'commentTitle': new FormControl(comment_.comment,Validators.required),
+              'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
+            })
+          );
+          
+        }
+      }
       
       for (let comment_ of task.comment)
       {
@@ -101,24 +104,26 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       'taskId':  new FormControl(taskId),
       'taskTitle': new FormControl(taskTitle),
       'imagePath':new FormControl(imageUrl),
-      //'comment': new FormControl(comments),
+      'comment': new FormControl(comments),
       'commentId': new FormControl(commentId),
       'commentT':new FormControl(commentTitle),
       'commentAuther': new FormControl(comment_auther)
-
     });
   }
   onSubmit() {
+    
     const value= this.taskForm.value;
-    const newTask = new BoxTask(value.taskId,value.taskTitle,value.imagePath,value.comment[value.commentId,value.commentT,value.commentAuther]);
-    console.log(newTask);
-
+    const task=this.boxService.getTask(this.index);
+    for (let comment_ of task.comment)
+      {
+    const newTask = new BoxTask(value.taskId,value.taskTitle,value.imagePath,[comment_,comment_]);
+      console.log(newTask);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,newTask);
     } else  {
       this.boxService.addTask(this.taskForm.value);
     }  
-    this.onCancel();
+    this.onCancel();}
   }
   onClear()
   {
@@ -163,12 +168,15 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 //   templateUrl: './edit-task.component.html',
 //   styleUrls: ['./edit-task.component.css']
 // })
+
+
 // export class EditTaskComponent implements OnInit, OnDestroy{
 //   @ViewChild('f') teForm:NgForm;
 //   subscription: Subscription;
 //   editMode = false;
 //   editedItemIndex:number;
 //   editedTask: BoxTask;
+
 //   constructor(private boxService: TableService,
 //               private router:Router,
 //               private route:ActivatedRoute) { }
