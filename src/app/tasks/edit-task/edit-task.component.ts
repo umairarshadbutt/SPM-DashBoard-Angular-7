@@ -2,8 +2,6 @@
 import {
   Component,
   OnInit,
-  ElementRef,
-  ViewChild,
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -34,12 +32,10 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   index:number;
   taskForm: FormGroup;
   editedTaskComment:number;
-
   constructor(private boxService: TaskService,
               private router:Router,
               private route:ActivatedRoute) { }
   ngOnInit() {
-
     this.ingredient = this.boxService.getBoxes();
     this.subscription = this.boxService.BoxesChanged.subscribe(
         (ingredient: Box[]) => {
@@ -51,15 +47,13 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editedItemIndex=index1;
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index1);
+        console.log(this.boxService.getTask(index1));
         this.editedComment=this.boxService.getComment(index1);
         this.index=index1;
         this.initForm();
        
       }
     );
-
-
-    
   }
 
   private initForm(){
@@ -67,62 +61,56 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     let taskTitle='';
     let imageUrl='';
     let comments=new FormArray([]);
-    let commentId=1;
-    let commentTitle='';
-    let comment_auther='';
+    
     if(this.editMode){
       const task=this.boxService.getTask(this.index);
       taskId=task.task_id;
       taskTitle=task.task_title;
       imageUrl=task.assigned;
-      // if (task['comment'])
-      // {
-      //   for (let comment_ of task.comment )
-      //   {
-      //     comments.push(
-      //       new FormGroup({
-      //         'commentId': new FormControl(comment_.comment_id, Validators.required),
-      //         'commentTitle': new FormControl(comment_.comment,Validators.required),
-      //         'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
-      //       })
-      //     );
-          
-      //   }
-      // }
-      
-      for (let comment_ of task.comment)
+      if (task['comment'])
       {
-      commentId=comment_.comment_id;
-      commentTitle=comment_.comment;
-      comment_auther=comment_.comment_auther;
-      console.log(comment_);
+        for (let comment_ of task.comment )
+        {
+          comments.push(
+            new FormGroup({
+              'commentId': new FormControl(comment_.comment_id, Validators.required),
+              'commentTitle': new FormControl(comment_.comment,Validators.required),
+              'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
+            })
+          );
+          
         }
+      }
+      
         
     }
 
     this.taskForm= new FormGroup({
-      'taskId':  new FormControl(taskId),
-      'taskTitle': new FormControl(taskTitle),
-      'imagePath':new FormControl(imageUrl),
-      'comment': new FormControl(comments),
-      'commentId': new FormControl(commentId),
-      'commentT':new FormControl(commentTitle),
-      'commentAuther': new FormControl(comment_auther)
+      'taskId':  new FormControl(taskId, Validators.required),
+      'taskTitle': new FormControl(taskTitle, Validators.required),
+      'imagePath':new FormControl(imageUrl, Validators.required),
+      'comment': comments
     });
   }
+  
   onSubmit() {
-    
-    const value= this.taskForm.value;
-    const task=this.boxService.getTask(this.index);
-    
-    const newTask = new BoxTask(value.taskId,value.taskTitle,value.imagePath,task.comment);
-      console.log(newTask);
+
+    console.log(this.taskForm.value);
     if (this.editMode){
-      this.boxService.updateTask(this.editedItemIndex,newTask);
+      this.boxService.updateTask(this.editedItemIndex,this.taskForm.value);
     } else  {
       this.boxService.addTask(this.taskForm.value);
     }  
     this.onCancel();
+  }
+  onAddIngredient() {
+    (<FormArray>this.taskForm.get('comment')).push(
+      new FormGroup({
+        'commentId': new FormControl(null, Validators.required),
+        'commentTitle': new FormControl(null, Validators.required),
+        'comment_auther': new FormControl(null, Validators.required),
+      })
+    );
   }
   onClear()
   {

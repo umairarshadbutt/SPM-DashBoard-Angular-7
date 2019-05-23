@@ -53,6 +53,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.editMode = true;
     this.boxService.startedEditing.next(index);
     
+    
   }
 
   onEditItem1(index:number){

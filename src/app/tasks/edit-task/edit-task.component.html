@@ -34,16 +34,18 @@
             required>
         </div>
         </div>
-        <div *ngFor="let task_ of ingredient; let i=index">
-            <div *ngFor="let item of task_.task let i=index">
-                <div *ngIf="item.task_id === editedItemIndex">
-                <div *ngFor="let comment_ of item.comment ">
+        <div >
+            <div >
+                <div  formArrayName="comment">
+                <div *ngFor="let ingredientCtrl of getControls(); let i = index"
+                [formGroupName]="i"
+                style="margin-top: 10px;">
                   <div class="row">
                       <div class="col-sm-2 ">
                           <div class="form-group">
                         <label >Commetn ID:</label>
                         <input
-                          type="text" value="{{comment_.comment_id}}"
+                          type="text"
                           class="form-control"
                           formControlName="commentId"
                           required>
@@ -54,25 +56,22 @@
                           <div class="form-group">
                         <label >Commetn ID:</label>
                         <input
-                          type="text" value="{{comment_.comment}}"
+                          type="text" 
                           class="form-control"
-                          formControlName="commentT"
+                          formControlName="commentTitle"
                           required>
                       </div>
                       </div>
-
-
                       <div class="col-sm-2 ">
                           <div class="form-group">
                         <label >Commetn ID:</label>
                         <input
-                          type="text" value="{{comment_.comment_auther}}"
+                          type="text" 
                           class="form-control"
-                          formControlName="commentAuther"
+                          formControlName="comment_auther"
                           required>
                       </div>
                       </div>
-                  
                       </div>
                       <br>
                   </div>
