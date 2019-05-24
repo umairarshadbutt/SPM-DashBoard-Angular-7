@@ -2,21 +2,21 @@
 <br>
 <hr>
 <div class="board1" cdkDropListGroup>
-      <div class="wrapper" *ngFor="let ingredient_ of ingredient; let i=index">
+      <div class="wrapper" *ngFor="let board_ of board; let i=index">
         <div class="list">
           <div class="target">
             <div class="list-header" style="cursor: pointer" >
 
-              <h3 style="width:400px" (click)="onEditItem1(i)"><a (click)="onEditItem1(i)">{{ingredient_.name}}</a></h3>
-            <div  cdkDropList class="list-cards"  [cdkDropListData]="ingredient_.task"
+              <h3 style="width:400px" (click)="onEditItem1(i)"><a (click)="onEditItem1(i)">{{board_.name}}</a></h3>
+            <div  cdkDropList class="list-cards"  [cdkDropListData]="board_.task"
             (cdkDropListDropped)="drop($event)"
             cdkDropList>
-            <div class="list-card"  *ngFor="let item of ingredient_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
+            <div class="list-card"  *ngFor="let item of board_.task let i=index"[class.selected]="item  === selectedTask" (click)="onSelect(item)" cdkDrag>
               <h5 style="line-height:44px" 
               >{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
             
             </div>
-            <a class="open-card-composer" *ngIf="ingredient_.name ==='Backlog'"(click)="onNewTask()"> + Add Another Task</a>
+            <a class="open-card-composer" *ngIf="board_.name ==='Backlog'"(click)="onAddTask()"> + Add Another Task</a>
           </div>
         </div>
         
@@ -35,7 +35,9 @@
      <h4><u>{{selectedTask.task_id}} - {{selectedTask.task_title}} </u><img class="a" [src]="selectedTask.assigned"> </h4> 
    <div *ngFor="let comment_ of selectedTask.comment ">
       <p >
-          {{comment_.comment_id}} </p><p>{{comment_.comment}}</p><p> by {{comment_.comment_auther}}<br>
+          {{comment_.comment_id}}
+          {{comment_.comment}} 
+          by {{comment_.comment_auther}}<br>
       </p>
     </div>
     </div>
@@ -55,31 +57,31 @@
 
 
 
-            <!-- <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Backlog'" 
+            <!-- <div cdkDropList class="list-cards" *ngIf="board_.name== 'Backlog'" 
             cdkDropList
     #todoList="cdkDropList"
-    [cdkDropListData]="ingredients"
+    [cdkDropListData]="boards"
     [cdkDropListConnectedTo]="[doneList]"
   
     (cdkDropListDropped)="drop($event)">
     <div>
-              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index" cdkDrag>
-                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
+              <a class="list-card" *ngFor="let board of boards; let i=index" cdkDrag>
+                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{board.task_id}} - {{board.task_title}}  <img [src]="board.assigned"></h5>
               </a>
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
               </div>
             </div>
 
 
-            <div cdkDropList class="list-cards" *ngIf="ingredient_.name== 'Todo'" 
+            <div cdkDropList class="list-cards" *ngIf="board_.name== 'Todo'" 
               cdkDropList
               #todoList="cdkDropList"
-              [cdkDropListData]="ingredients"
+              [cdkDropListData]="boards"
               [cdkDropListConnectedTo]="[doneList]"
               (cdkDropListDropped)="drop($event)">
               <div>
-              <a class="list-card" *ngFor="let ingredient of ingredients; let i=index" cdkDrag>
-                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}}  <img [src]="ingredient.assigned"></h5>
+              <a class="list-card" *ngFor="let board of boards; let i=index" cdkDrag>
+                  <h5 style="line-height:44px" (click)="onEditItem(i)">{{board.task_id}} - {{board.task_title}}  <img [src]="board.assigned"></h5>
               </a>
               <a class="open-card-composer" (click)="onNewTask()"> + Add Another Task</a>
               </div>
@@ -88,8 +90,8 @@
 <!-- 
 <div class="dd" >
   <div  >      
-         <div class="board" style="cursor: pointer" *ngFor="let ingredient_ of ingredient; let i=index">
-            <h3 style="width:400px" (click)="onEditItem1(i)">{{ingredient_.name}}</h3>&nbsp;&nbsp;&nbsp; 
+         <div class="board" style="cursor: pointer" *ngFor="let board_ of board; let i=index">
+            <h3 style="width:400px" (click)="onEditItem1(i)">{{board_.name}}</h3>&nbsp;&nbsp;&nbsp; 
          </div>
   
   </div>
@@ -98,9 +100,9 @@
 </div>
 
 
-<div class="task_detail " *ngFor="let ingredient of ingredients; let i=index"  >
+<div class="task_detail " *ngFor="let board of boards; let i=index"  >
     <div class="tasks">
-      <h4 (click)="onEditItem(i)">{{ingredient.task_id}} - {{ingredient.task_title}} <img [src]="ingredient.assigned"> </h4>
+      <h4 (click)="onEditItem(i)">{{board.task_id}} - {{board.task_title}} <img [src]="board.assigned"> </h4>
       <br>
     </div>
 </div>
