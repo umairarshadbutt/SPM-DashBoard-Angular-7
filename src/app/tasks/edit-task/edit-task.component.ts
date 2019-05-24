@@ -48,7 +48,6 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         this.editMode = true;
         this.editedTask=this.boxService.getTask(index1);
         console.log(this.boxService.getTask(index1));
-        this.editedComment=this.boxService.getComment(index1);
         this.index=index1;
         this.initForm();
        
@@ -73,8 +72,8 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         {
           comments.push(
             new FormGroup({
-              'commentId': new FormControl(comment_.comment_id, Validators.required),
-              'commentTitle': new FormControl(comment_.comment,Validators.required),
+              'comment_id': new FormControl(comment_.comment_id, Validators.required),
+              'comment': new FormControl(comment_.comment,Validators.required),
               'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
             })
           );
@@ -86,9 +85,9 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     }
 
     this.taskForm= new FormGroup({
-      'taskId':  new FormControl(taskId, Validators.required),
-      'taskTitle': new FormControl(taskTitle, Validators.required),
-      'imagePath':new FormControl(imageUrl, Validators.required),
+      'task_id':  new FormControl(taskId, Validators.required),
+      'task_title': new FormControl(taskTitle, Validators.required),
+      'assigned':new FormControl(imageUrl, Validators.required),
       'comment': comments
     });
   }
