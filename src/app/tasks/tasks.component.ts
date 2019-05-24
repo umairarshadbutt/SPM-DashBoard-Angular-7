@@ -36,6 +36,7 @@ export class TasksComponent implements OnInit, OnDestroy {
           this.board = board;
         }
       );
+      console.log(this.board);
   }
   onSelect(task:Box): void{
     this.selectedTask=task;
@@ -51,6 +52,12 @@ export class TasksComponent implements OnInit, OnDestroy {
   onEditItem(index:number){
     this.editMode = true;
     this.boxService.startedEditing.next(index);
+    
+    
+  }
+  onAddTask(){
+    this.editMode = true;
+    this.boxService.startedEditing.next();
     
     
   }

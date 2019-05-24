@@ -16,7 +16,7 @@
               >{{item.task_id+ ""}}-{{item.task_title}} <img [src]="item.assigned"> </h5> 
             
             </div>
-            <a class="open-card-composer" *ngIf="board_.name ==='Backlog'"(click)="onNewTask()"> + Add Another Task</a>
+            <a class="open-card-composer" *ngIf="board_.name ==='Backlog'"(click)="onAddTask()"> + Add Another Task</a>
           </div>
         </div>
         
