@@ -95,7 +95,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.onCancel();
   }
   
-  onAddIngredient() {
+  onAddComment() {
     (<FormArray>this.taskForm.get('comment')).push(
       new FormGroup({
         'comment_id': new FormControl(null, Validators.required),
