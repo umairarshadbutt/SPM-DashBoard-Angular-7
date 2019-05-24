@@ -5,7 +5,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TaskService } from 'src/app/services/task.service';
 import { Box } from 'src/app/models/Box.model';
@@ -28,7 +28,6 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   editedItem:Box;
   editedTask: BoxTask;
   editedComment: BoxTaskComment;
-
   index:number;
   taskForm: FormGroup;
   editedTaskComment:number;
@@ -50,13 +49,11 @@ export class EditTaskComponent implements OnInit, OnDestroy{
         console.log(this.boxService.getTask(index1));
         this.index=index1;
         this.initForm();
-       
       }
     );
   }
-
   private initForm(){
-    let taskId=1;
+    let taskId=null;
     let taskTitle='';
     let imageUrl='';
     let comments=new FormArray([]);
@@ -76,14 +73,10 @@ export class EditTaskComponent implements OnInit, OnDestroy{
               'comment': new FormControl(comment_.comment,Validators.required),
               'comment_auther': new FormControl(comment_.comment_auther,Validators.required),
             })
-          );
-          
+          );   
         }
-      }
-      
-        
+      }   
     }
-
     this.taskForm= new FormGroup({
       'task_id':  new FormControl(taskId, Validators.required),
       'task_title': new FormControl(taskTitle, Validators.required),
@@ -93,7 +86,6 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   }
   
   onSubmit() {
-
     console.log(this.taskForm.value);
     if (this.editMode){
       this.boxService.updateTask(this.editedItemIndex,this.taskForm.value);
@@ -102,6 +94,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     }  
     this.onCancel();
   }
+  
   onAddIngredient() {
     (<FormArray>this.taskForm.get('comment')).push(
       new FormGroup({
@@ -111,102 +104,27 @@ export class EditTaskComponent implements OnInit, OnDestroy{
       })
     );
   }
+  
   onClear()
   {
     this.editMode=false;
   }
+  
   onDelete(){
     this.boxService.deleteTask(this.editedItemIndex);
     this.onClear();
   }
+  
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+  
   ngOnDestroy(){
 
     this.subscription.unsubscribe();
   }
+
   getControls() {
     return (<FormArray>this.taskForm.get('comment')).controls;
   }
-
-
 }
-
-// Reactive approach
-// import {
-//   Component,
-//   OnInit,
-//   ElementRef,
-//   ViewChild,
-//   OnDestroy
-// } from '@angular/core';
-// import { Subscription } from 'rxjs/Subscription';
-// import { NgForm } from '@angular/forms';
-// import { BoxTask } from '../../BoxTask.model';
-// import { Router, ActivatedRoute } from '@angular/router';
-// import { TableService } from 'src/app/services/table.service';
-// import { Box } from 'src/app/Box.model';
-// import { BoxTaskComment } from 'src/app/BoxTaskComment.module';
-
-// @Component({
-//   selector: 'app-edit-task',
-//   templateUrl: './edit-task.component.html',
-//   styleUrls: ['./edit-task.component.css']
-// })
-
-
-// export class EditTaskComponent implements OnInit, OnDestroy{
-//   @ViewChild('f') teForm:NgForm;
-//   subscription: Subscription;
-//   editMode = false;
-//   editedItemIndex:number;
-//   editedTask: BoxTask;
-
-//   constructor(private boxService: TableService,
-//               private router:Router,
-//               private route:ActivatedRoute) { }
-//   ngOnInit() {
-//     this.subscription= this.boxService.startedEditing.subscribe(
-//       (index: number) => {
-//         this.editedItemIndex=index;
-//         this.editMode = true;
-//         this.editedTask=this.boxService.getTask(index);
-//       console.log(index);
-//         this.teForm.setValue({
-//           tId: this.editedTask.task_id,
-//           tTitle: this.editedTask.task_title,
-//           pIc: this.editedTask.assigned,
-//          })
-//       }
-//     );
-//   }
-//   onSubmit(form: NgForm) {
-//     const value= form.value;
-//     const newTask = new BoxTask(value.tId,value.tTitle,value.pIc,[]);
-//     if (this.editMode){
-//       this.boxService.updateTask(this.editedItemIndex,newTask);
-//     } else  {
-//       this.boxService.addTask(newTask);
-//     }  
-//     this.editMode=false;
-//     form.reset();
-//   }
-//   onClear()
-//   {
-//     this.teForm.reset();
-//     this.editMode=false;
-//   }
-//   onDelete(){
-//     this.boxService.deleteTask(this.editedItemIndex);
-//     this.onClear();
-//   }
-//   onCancel() {
-//     this.router.navigate(['../'], {relativeTo: this.route});
-    
-//   }
-//   ngOnDestroy(){
-
-//     this.subscription.unsubscribe();
-//   }
-// }
