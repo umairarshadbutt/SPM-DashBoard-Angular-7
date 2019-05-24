@@ -100,14 +100,8 @@ export class TaskService{
               for(let temp in Box.task){
                 let value=Box.task[temp]
                 if (value.task_id==index){
-                  console.log(value);
-                  console.log(Box.task[temp]);
-                  console.log(newBox);
                   Box.task[temp]=null;
-                  Box.task[temp] = newBox;
-
-
-                  
+                  Box.task[temp] = newBox; 
             this.BoxesChangedTask.next(Box.task.slice());
             }}}
           }

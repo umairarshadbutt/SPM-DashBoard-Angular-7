@@ -45,7 +45,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
     this.subscription= this.boxService.startedEditing.subscribe(
       (index1: number) => {
         this.editedItemIndex=index1;
-        this.editMode = true;
+        this.editMode = this.boxService.getTask(index1) !=null;
         this.editedTask=this.boxService.getTask(index1);
         console.log(this.boxService.getTask(index1));
         this.index=index1;
@@ -105,8 +105,8 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   onAddIngredient() {
     (<FormArray>this.taskForm.get('comment')).push(
       new FormGroup({
-        'commentId': new FormControl(null, Validators.required),
-        'commentTitle': new FormControl(null, Validators.required),
+        'comment_id': new FormControl(null, Validators.required),
+        'comment': new FormControl(null, Validators.required),
         'comment_auther': new FormControl(null, Validators.required),
       })
     );
