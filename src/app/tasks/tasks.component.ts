@@ -15,8 +15,7 @@ import { BoxTask } from '../models/BoxTask.model';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit, OnDestroy {
-  ingredients:BoxTask[] ;
-  ingredient: Box[] ;
+  board: Box[] ;
   editMode= false;
   private subscription: Subscription;
   //task:Task[];
@@ -31,10 +30,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     //this.getTasks();
     
 
-      this.ingredient = this.boxService.getBoxes();
+      this.board = this.boxService.getBoxes();
     this.subscription = this.boxService.BoxesChanged.subscribe(
-        (ingredient: Box[]) => {
-          this.ingredient = ingredient;
+        (board: Box[]) => {
+          this.board = board;
         }
       );
   }
@@ -61,7 +60,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.boxService.startedEditing.next(index);
   }
   onNewTask() {
-    this.editMode=true;
+    this.router.navigate(['newTask'], {relativeTo: this.route});
     
   }
   onNewBoard() {
