@@ -123,7 +123,9 @@ export class EditTaskComponent implements OnInit, OnDestroy{
 
     this.subscription.unsubscribe();
   }
-
+  onDeleteComment(index: number) {
+    (<FormArray>this.taskForm.get('comment')).removeAt(index);
+  }
   getControls() {
     return (<FormArray>this.taskForm.get('comment')).controls;
   }
