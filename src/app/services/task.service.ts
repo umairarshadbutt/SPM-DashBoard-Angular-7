@@ -40,12 +40,6 @@ export class TaskService{
             this.BoxesChanged.next(this.Boxes.slice());
           }
 
-          getTasks() {
-            for (let Box of this.Boxes){
-              
-            return Box.task.slice();
-            }
-          }
           getTask(index:number){
             for (let Box of this.Boxes){
               for(let task of Box.task){ 
@@ -86,15 +80,6 @@ export class TaskService{
             }
           }
         
-          addTasks(tasks: BoxTask[]) {
-           
-            for (let Box of this.Boxes){
-              if(Box.board_id==1){
-            Box.task.push(...tasks);
-            this.BoxesChangedTask.next(Box.task.slice());
-            }
-          }
-          }
           updateTask(index: number, newBox:BoxTask){
             for (let Box of this.Boxes){
               for(let temp in Box.task){

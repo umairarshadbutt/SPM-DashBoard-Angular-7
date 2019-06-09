@@ -20,12 +20,10 @@ import { BoxTask } from 'src/app/models/BoxTask.model';
 
 
 export class EditTaskComponent implements OnInit, OnDestroy{
-  ingredient: Box[] ;
-  ingredients:BoxTask[] ;
+  task: Box[] ;
   subscription: Subscription;
   editMode = false;
-  editedItemIndex:number;
-  editedItem:Box;
+  editedTaskIndex:number;
   editedTask: BoxTask;
   editedComment: BoxTaskComment;
   index:number;
@@ -35,15 +33,15 @@ export class EditTaskComponent implements OnInit, OnDestroy{
               private router:Router,
               private route:ActivatedRoute) { }
   ngOnInit() {
-    this.ingredient = this.boxService.getBoxes();
+    this.task = this.boxService.getBoxes();
     this.subscription = this.boxService.BoxesChanged.subscribe(
-        (ingredient: Box[]) => {
-          this.ingredient = ingredient;
+        (task: Box[]) => {
+          this.task = task;
         }
       );
     this.subscription= this.boxService.startedEditing.subscribe(
       (index1: number) => {
-        this.editedItemIndex=index1;
+        this.editedTaskIndex=index1;
         this.editMode = this.boxService.getTask(index1) !=null;
         this.editedTask=this.boxService.getTask(index1);
         console.log(this.boxService.getTask(index1));
@@ -88,7 +86,7 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   onSubmit() {
     console.log(this.taskForm.value);
     if (this.editMode){
-      this.boxService.updateTask(this.editedItemIndex,this.taskForm.value);
+      this.boxService.updateTask(this.editedTaskIndex,this.taskForm.value);
     } else  {
       this.boxService.addTask(this.taskForm.value);
     }  
@@ -111,14 +109,13 @@ export class EditTaskComponent implements OnInit, OnDestroy{
   }
   
   onDelete(){
-    this.boxService.deleteTask(this.editedItemIndex);
+    this.boxService.deleteTask(this.editedTaskIndex);
     this.onClear();
   }
   
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
-  
   ngOnDestroy(){
 
     this.subscription.unsubscribe();
