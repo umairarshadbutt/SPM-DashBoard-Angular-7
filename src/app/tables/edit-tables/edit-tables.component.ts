@@ -4,18 +4,17 @@ import { Box } from 'src/app/models/Box.model';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BoxTask } from 'src/app/models/BoxTask.model';
 @Component({
   selector: 'app-edit-tables',
   templateUrl: './edit-tables.component.html',
   styleUrls: ['./edit-tables.component.css']
 })
 export class EditTablesComponent implements OnInit,OnDestroy {
-  @ViewChild('f') slForm:NgForm;
+  @ViewChild('f') boardForm:NgForm;
   subscription: Subscription;
   editMode = false;
-  editedItemIndex:number;
-  editedItem:Box;
+  editedBoardIndex:number;
+  editedBoard:Box;
   constructor(private boxService: TaskService,
               private router:Router,
               private route:ActivatedRoute) { }
@@ -24,14 +23,14 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.subscription= this.boxService.startedEditing.subscribe(
       (index: number) => {
-        this.editedItemIndex=index;
+        this.editedBoardIndex=index;
         this.editMode = true;
-        this.editedItem=this.boxService.getBox(index);
+        this.editedBoard=this.boxService.getBox(index);
 
-        this.slForm.setValue({
-          name: this.editedItem.name,
-          boardID: this.editedItem.board_id,
-          taskId:this.editedItem.task,
+        this.boardForm.setValue({
+          name: this.editedBoard.name,
+          boardID: this.editedBoard.board_id,
+          taskId:this.editedBoard.task,
         })
       }
     );
@@ -40,7 +39,7 @@ export class EditTablesComponent implements OnInit,OnDestroy {
     const value= form.value;
     const newBox = new Box(value.boardID ,value.name, []);
     if (this.editMode){
-      this.boxService.updateBox(this.editedItemIndex,newBox);
+      this.boxService.updateBox(this.editedBoardIndex,newBox);
     } else {
       this.boxService.addBox(newBox);
     }   
@@ -49,11 +48,11 @@ export class EditTablesComponent implements OnInit,OnDestroy {
   }
   onClear()
   {
-    this.slForm.reset();
+    this.boardForm.reset();
     this.editMode=false;
   }
   onDelete(){
-    this.boxService.deleteBox(this.editedItemIndex);
+    this.boxService.deleteBox(this.editedBoardIndex);
     this.onClear();
   }
   onCancel() {
